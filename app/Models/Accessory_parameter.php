@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Purpose extends Model
+class Accessory_parameter extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-
-    public function devices(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function Accessories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->hasMany(Device::class);
+        return $this->belongsToMany(Accessory::class);
     }
 }

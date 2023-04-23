@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Device_name extends Model
+class Accessory extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-
-    public function additional_parameters(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function accessory_parameters(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Additional_parameter::class);
+        return $this->belongsToMany(Accessory_parameter::class);
     }
 
-    public function devices(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function devices(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->hasMany(Device::class);
+        return $this->belongsToMany(Device::class);
     }
 
     public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo

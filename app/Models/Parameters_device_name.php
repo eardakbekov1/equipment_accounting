@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Additional_parameters_device_name extends Model
+class Parameters_device_name extends Model
 {
     use HasFactory;
 

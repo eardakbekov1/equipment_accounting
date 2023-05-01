@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Additional_parameters_value;
+use App\Models\Parameters_value;
 use Illuminate\Http\Request;
 
-class AdditionalParametersValueController extends Controller
+class ParametersValueController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class AdditionalParametersValueController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Additional_parameters_value  $additional_parameters_value
+     * @param  \App\Models\Parameters_value  $parameters_value
      * @return \Illuminate\Http\Response
      */
-    public function show(Additional_parameters_value $additional_parameters_value)
+    public function show(Parameters_value $parameters_value)
     {
         //
     }
@@ -52,10 +52,10 @@ class AdditionalParametersValueController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Additional_parameters_value  $additional_parameters_value
+     * @param  \App\Models\Parameters_value  $parameters_value
      * @return \Illuminate\Http\Response
      */
-    public function edit(Additional_parameters_value $additional_parameters_value)
+    public function edit(Parameters_value $parameters_value)
     {
         //
     }
@@ -64,10 +64,10 @@ class AdditionalParametersValueController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Additional_parameters_value  $additional_parameters_value
+     * @param  \App\Models\Parameters_value  $parameters_value
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Additional_parameters_value $additional_parameters_value)
+    public function update(Request $request, Parameters_value $parameters_value)
     {
         //
     }
@@ -75,10 +75,10 @@ class AdditionalParametersValueController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Additional_parameters_value  $additional_parameters_value
+     * @param  \App\Models\Parameters_value  $parameters_value
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Additional_parameters_value $additional_parameters_value)
+    public function destroy(Parameters_value $parameters_value)
     {
         //
     }

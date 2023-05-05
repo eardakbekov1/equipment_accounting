@@ -11,9 +11,9 @@ class Device_name extends Model
 
     protected $guarded = [];
 
-    public function additional_parameters(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function parameters(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Additional_parameter::class);
+        return $this->belongsToMany(Parameter::class);
     }
 
     public function devices(): \Illuminate\Database\Eloquent\Relations\HasMany

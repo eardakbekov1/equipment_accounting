@@ -36,9 +36,9 @@ class Device extends Model
         return $this->belongsTo(Condition::class);
     }
 
-    public function additional_parameters_values(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function parameter_values(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Additional_parameters_value::class);
+        return $this->hasMany(Parameter_value::class);
     }
 
     public function device_name(): \Illuminate\Database\Eloquent\Relations\BelongsTo

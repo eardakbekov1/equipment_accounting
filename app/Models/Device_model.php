@@ -16,7 +16,7 @@ class Device_model extends Model
         return $this->hasMany(Device::class);
     }
 
-    public function manufacturers(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function manufacturer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Manufacturer::class);
     }

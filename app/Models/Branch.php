@@ -11,7 +11,7 @@ class Branch extends Model
 
     protected $guarded = [];
 
-    public function departmets(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function departments(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Department::class);
     }

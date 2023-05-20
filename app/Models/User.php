@@ -42,8 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function employee(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function employee(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasOne(Employee::class);
+        return $this->belongsTo(Employee::class);
     }
 }

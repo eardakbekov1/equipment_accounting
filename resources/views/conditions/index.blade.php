@@ -4,7 +4,7 @@
     <div class="row">
         <div class="grid text-center">
             <div>
-                <h2>conditions</h2>
+                <h2>Conditions</h2>
             </div>
             <div>
                 <a class="btn btn-success" href="{{ route('conditions.create') }}">Create a new condition</a>
@@ -19,11 +19,15 @@
         </div>
     @endif
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="conditionsTable">
+        <thead>
         <tr>
             <th>№</th>
-            <th>condition Name</th>
+            <th>Condition Name</th>
+            <th>Action</th>
         </tr>
+        </thead>
+        <tbody>
         @foreach ($conditions as $condition)
             <tr>
                 <td>{{ ++$i }}</td>
@@ -56,8 +60,17 @@
                 </td>
             </tr>
         @endforeach
+        </tbody>
     </table>
 
     {!! $conditions->links() !!}
 
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function () {
+            $('#conditionsTable').DataTable();
+        });
+    </script>
+@endpush

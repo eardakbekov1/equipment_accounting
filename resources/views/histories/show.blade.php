@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>handovered_date: {{ $history->handovered_date }}</h2>
+                <h2>History:</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('histories.index') }}">Back</a>
@@ -15,8 +15,8 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>handovered_date:</strong>
-                {{ $history->handovered_date }}
+                <strong>Handovered date:</strong>
+                {{ $history->handovered_date  ?? ''}}
             </div>
         </div>
     </div>
@@ -24,8 +24,8 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>received_date:</strong>
-                {{ $history->received_date }}
+                <strong>Received date:</strong>
+                {{ $history->received_date  ?? ''}}
             </div>
         </div>
     </div>
@@ -33,8 +33,8 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>device_id:</strong>
-                {{ $history->device_id }}
+                <strong>Device:</strong>
+                {{$history->device->d_name->name ?? ''}}&nbsp;|&nbsp;{{$history->device->d_model->manufacturer->name  ?? ''}}&nbsp;|&nbsp;{{$history->device->d_model->name ?? ''}}&nbsp;|&nbsp;{{$history->device->serial_number ?? ''}}
             </div>
         </div>
     </div>
@@ -42,8 +42,8 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>employee_id:</strong>
-                {{ $history->employee_id }}
+                <strong>Employee:</strong>
+                {{ $history->employee->first_name ?? '' }}&nbsp;{{ $history->employee->last_name ?? '' }}
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Device name: {{ $device->device_name_id }}</h2>
+                <h2>Device name: {{ $device->d_name->name ?? ''}}</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('devices.index') }}">Back</a>
@@ -15,80 +15,72 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>device_name_id:</strong>
-                {{ $device->device_name_id }}
+                <strong>Device name:</strong>
+                {{ $device->d_name->name ?? ''}}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>device_model_id:</strong>
-                {{ $device->device_model_id }}
+                <strong>Device model:</strong>
+                {{ $device->d_model->name ?? ''}}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>sponsor_inventory:</strong>
-                {{ $device->sponsor_inventory }}
+                <strong>Sponsor inventory number:</strong>
+                {{ $device->sponsor_inventory  ?? ''}}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>implementer_inventory:</strong>
-                {{ $device->implementer_inventory }}
+                <strong>Implementer inventory number:</strong>
+                {{ $device->implementer_inventory ?? ''}}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>parent_id:</strong>
-                {{ $device->parent_id }}
+                <strong>Purpose:</strong>
+                {{ $device->purpose->name ?? ''}}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>purpose_id:</strong>
-                {{ $device->purpose_id }}
+                <strong>Serial number:</strong>
+                {{ $device->serial_number ?? ''}}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>serial_number:</strong>
-                {{ $device->serial_number }}
+                <strong>Location:</strong>
+                {{ $device->location->address ?? ''}}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>location_id:</strong>
-                {{ $device->location_id }}
+                <strong>Condition:</strong>
+                {{ $device->condition->name ?? ''}}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>condition_id:</strong>
-                {{ $device->condition_id }}
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>notes:</strong>
-                {{ $device->notes }}
+                <strong>Notes:</strong>
+                {{ $device->notes ?? ''}}
             </div>
         </div>
     </div>

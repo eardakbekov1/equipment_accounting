@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Condition;
-use Illuminate\Http\Request;
+use App\Http\Requests\ConditionRequest;
 
 class ConditionController extends Controller
 {
@@ -35,10 +35,10 @@ class ConditionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ConditionRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ConditionRequest $request)
     {
         $condition = Condition::create($request->all());
 
@@ -73,11 +73,11 @@ class ConditionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ConditionRequest  $request
      * @param  \App\Models\Condition  $condition
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Condition $condition)
+    public function update(ConditionRequest $request, Condition $condition)
     {
         $condition->update($request->all());
 

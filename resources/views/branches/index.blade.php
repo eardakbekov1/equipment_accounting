@@ -4,7 +4,7 @@
     <div class="row">
         <div class="grid text-center">
             <div>
-                <h2>branches</h2>
+                <h2>Branches</h2>
             </div>
             <div>
                 <a class="btn btn-success" href="{{ route('branches.create') }}">Create a new branch</a>
@@ -22,18 +22,19 @@
     <table class="table table-bordered">
         <tr>
             <th>№</th>
-            <th>branch Name</th>
-            <th>phone_number</th>
-            <th>organization_id</th>
-            <th>location_id</th>
+            <th>Branch Name</th>
+            <th>Phone number</th>
+            <th>Organization</th>
+            <th>Address</th>
+            <th>Control buttons</th>
         </tr>
         @foreach ($branches as $branch)
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $branch->name }}</td>
                 <td>{{ $branch->phone_number }}</td>
-                <td>{{ $branch->organization_id }}</td>
-                <td>{{ $branch->location_id }}</td>
+                <td>{{ $branch->organization->name }}</td>
+                <td>{{ $branch->location->address }}</td>
                 <td>
                     <form action="{{ route('branches.destroy',$branch->id) }}" method="POST">
 

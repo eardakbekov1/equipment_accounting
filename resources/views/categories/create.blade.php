@@ -30,8 +30,8 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <p></p>
-                    <label for="nameInput">Category name:</label>
-                    <input id="nameInput" type="text" name="name" class="form-control" placeholder="Type category name">
+                    <label for="nameInput">Category:</label>
+                    <input id="nameInput" type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}" placeholder="Type category name">
                 </div>
             </div>
             <p></p>

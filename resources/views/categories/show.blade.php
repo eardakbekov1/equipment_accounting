@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Category name: {{ $category->name }}</h2>
+                <h2>Category: {{ $category->name }}</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('categories.index') }}">Back</a>
@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Category name:</strong>
+                <strong>Category:</strong>
                 {{ $category->name }}
             </div>
         </div>

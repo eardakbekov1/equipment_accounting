@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Device;
+use App\Models\Employee;
 use App\Models\History;
-use Illuminate\Http\Request;
+use App\Http\Requests\HistoryRequest;
 
 class HistoryController extends Controller
 {
@@ -15,6 +17,8 @@ class HistoryController extends Controller
     public function index()
     {
         $histories = History::latest()->paginate(5);
+        $devices = Device::all();
+        $employees = Employee::all();
 
         return view('histories.index',compact('histories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -29,16 +33,19 @@ class HistoryController extends Controller
     {
         $histories = History::all();
 
-        return view('histories.create', compact('histories'));
+        $devices = Device::all();
+        $employees = Employee::all();
+
+        return view('histories.create', compact('histories', 'devices', 'employees'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\HistoryRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(HistoryRequest $request)
     {
         $history = History::create($request->all());
 
@@ -67,17 +74,20 @@ class HistoryController extends Controller
      */
     public function edit(History $history)
     {
-        return view('histories.edit',compact('history'));
+        $devices = Device::all();
+        $employees = Employee::all();
+
+        return view('histories.edit',compact('history', 'devices', 'employees'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\HistoryRequest  $request
      * @param  \App\Models\History  $history
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, History $history)
+    public function update(HistoryRequest $request, History $history)
     {
         $history->update($request->all());
 

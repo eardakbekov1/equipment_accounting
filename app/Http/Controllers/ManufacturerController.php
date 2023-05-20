@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Manufacturer;
-use Illuminate\Http\Request;
+use App\Http\Requests\ManufacturerRequest;
 
 class ManufacturerController extends Controller
 {
@@ -35,17 +35,17 @@ class ManufacturerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ManufacturerRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ManufacturerRequest $request)
     {
         $manufacturer = Manufacturer::create($request->all());
 
         $manufacturer->save();
 
         return redirect()->route('manufacturers.index')
-            ->with('success',"manufacturer successfully added!");
+            ->with('success','The manufacturer successfully added!');
     }
 
     /**
@@ -73,16 +73,16 @@ class ManufacturerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ManufacturerRequest  $request
      * @param  \App\Models\Manufacturer  $manufacturer
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Manufacturer $manufacturer)
+    public function update(ManufacturerRequest $request, Manufacturer $manufacturer)
     {
         $manufacturer->update($request->all());
 
         return redirect()->route('manufacturers.index')
-            ->with('success','manufacturer successfully edited!');
+            ->with('success','The manufacturer successfully edited!');
     }
 
     /**
@@ -96,6 +96,6 @@ class ManufacturerController extends Controller
         $manufacturer->delete();
 
         return redirect()->route('manufacturers.index')
-            ->with('success','manufacturer successfully deleted!');
+            ->with('success','The manufacturer successfully deleted!');
     }
 }

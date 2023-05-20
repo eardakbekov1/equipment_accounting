@@ -19,7 +19,8 @@
         </div>
     @endif
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="devicesTable">
+        <thead>
         <tr>
             <th>№</th>
             <th>Device Name</th>
@@ -31,20 +32,23 @@
             <th>Location</th>
             <th>Condition</th>
             <th>Notes</th>
-            <th>Control buttons</th>
+            <th>Action</th>
         </tr>
+        </thead>
+        <tbody>
+
         @foreach ($devices as $device)
             <tr>
-                <td>{{ ++$i }}</td>
-                <td>{{ $device->device_name->name ?? ''}}</td>
-                <td>{{ $device->device_model->manufacturer->name  ?? ''}}&nbsp;|&nbsp;{{ $device->device_model->name ?? ''}}</td>
-                <td>{{ $device->serial_number }}</td>
-                <td>{{ $device->implementer_inventory }}</td>
-                <td>{{ $device->sponsor_inventory }}</td>
+                <td>{{ ++$i ?? ''}}</td>
+                <td>{{ $device->d_name->name ?? ''}}</td>
+                <td>{{ $device->d_model->manufacturer->name  ?? ''}}&nbsp;|&nbsp;{{ $device->d_model->name ?? ''}}</td>
+                <td>{{ $device->serial_number ?? ''}}</td>
+                <td>{{ $device->implementer_inventory ?? ''}}</td>
+                <td>{{ $device->sponsor_inventory ?? ''}}</td>
                 <td>{{ $device->purpose->name ?? ''}}</td>
                 <td>{{ $device->location->address ?? ''}}</td>
                 <td>{{ $device->condition->name ?? ''}}</td>
-                <td>{{ $device->notes }}</td>
+                <td>{{ $device->notes ?? ''}}</td>
                 <td>
                     <form action="{{ route('devices.destroy',$device->id) }}" method="POST">
 
@@ -73,8 +77,18 @@
                 </td>
             </tr>
         @endforeach
+        </tbody>
     </table>
 
     {!! $devices->links() !!}
 
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function () {
+            $('#devicesTable').DataTable();
+        });
+    </script>
+@endpush
+

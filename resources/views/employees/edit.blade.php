@@ -23,7 +23,7 @@
         </div>
     @endif
 
-    <form action="{{ route('employees.update',$employee->id) }}" method="POST">
+    <form action="{{ route('employees.update',$employee->id ?? '') }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -31,64 +31,75 @@
             <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <p></p>
                     <label for="first_nameInput">Employee first name:</label>
-                    <input id="first_nameInput" type="text" name="first_name" value="{{ $employee->first_name }}" class="form-control" placeholder="first_name">
+                    <input id="first_nameInput" class="form-control" value="{{ $employee->first_name ?? '' }}" type="text" name="first_name" placeholder="Type the employee first name">
                 </div>
             </div>
             <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <p></p>
                     <label for="last_nameInput">Employee last name:</label>
-                    <input id="last_nameInput" type="text" name="last_name" value="{{ $employee->last_name }}" class="form-control" placeholder="last_name">
+                    <input id="last_nameInput" class="form-control" value="{{ $employee->last_name ?? '' }}" type="text" name="last_name" placeholder="Type the employee last name">
                 </div>
             </div>
             <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <p></p>
                     <label for="surnameInput">Employee surname:</label>
-                    <input id="surnameInput" type="text" name="surname" value="{{ $employee->surname }}" class="form-control" placeholder="surname">
+                    <input id="surnameInput" class="form-control" value="{{ $employee->surname ?? '' }}" type="text" name="surname" placeholder="Type the employee surname">
                 </div>
             </div>
             <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="organization_idInput">Organization_id:</label>
-                    <input id="organization_idInput" type="text" name="organization_id" value="{{ $employee->organization_id }}" class="form-control" placeholder="organization_id">
+                    <p></p>
+                    <label for="organization_idSelect">Organization:</label>
+                    <select id="organization_idSelect" class="form-select"  name="organization_id" aria-label="Default select example">
+                        <option value="{{ $employee->organization_id  ?? ''}}">{{ $employee->organization->name  ?? ''}}</option>
+                        @foreach($organizations as $key => $organization)
+                            <option value="{{$organization->id ?? ''}}">{{$organization->name ?? ''}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="position_idInput">Position_id:</label>
-                    <input id="position_idInput" type="text" name="position_id" value="{{ $employee->position_id }}" class="form-control" placeholder="position_id">
+                    <p></p>
+                    <label for="position_idSelect">Position:</label>
+                    <select id="position_idSelect" class="form-select"  name="position_id" aria-label="Default select example">
+                        <option value="{{ $employee->position_id  ?? ''}}">{{ $employee->position->name  ?? ''}}</option>
+                        @foreach($positions as $key => $position)
+                            <option value="{{$position->id ?? ''}}">{{$position->name ?? ''}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <p></p>
                     <label for="phone_numberInput">Phone_number:</label>
-                    <input id="phone_numberInput" type="text" name="phone_number" value="{{ $employee->phone_number }}" class="form-control" placeholder="phone_number">
+                    <input id="phone_numberInput" class="form-control" value="{{ $employee->phone_number ?? '' }}" type="text" name="phone_number" placeholder="phone_number">
                 </div>
             </div>
             <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <p></p>
                     <label for="usernameInput">Username:</label>
-                    <input id="usernameInput" type="text" name="username" value="{{ $employee->username }}" class="form-control" placeholder="username">
+                    <input id="usernameInput" value="{{ $employee->username ?? '' }}" type="text" name="username" class="form-control" placeholder="username">
                 </div>
             </div>
             <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <p></p>
                     <label for="emailInput">Email:</label>
-                    <input id="emailInput" type="text" name="email" value="{{ $employee->email }}" class="form-control" placeholder="email">
-                </div>
-            </div>
-            <p></p>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <label for="user_idInput">User_id:</label>
-                    <input id="user_idInput" type="text" name="user_id" value="{{ $employee->user_id }}" class="form-control" placeholder="user_id">
+                    <input id="emailInput" value="{{ $employee->email ?? '' }}" type="text" name="email" class="form-control" value="{{old('email')}}" placeholder="email">
                 </div>
             </div>
             <p></p>

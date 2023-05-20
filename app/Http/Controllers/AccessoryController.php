@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AccessoryRequest;
 use App\Models\Accessory;
-use Illuminate\Http\Request;
+use App\Models\Category;
 
 class AccessoryController extends Controller
 {
@@ -28,24 +29,25 @@ class AccessoryController extends Controller
     public function create()
     {
         $accessories = Accessory::all();
+        $categories = Category::all();
 
-        return view('accessories.create', compact('accessories'));
+        return view('accessories.create', compact('accessories', 'categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\AccessoryRequest $accessoryRequest
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(AccessoryRequest $accessoryRequest)
     {
-        $accessory = Accessory::create($request->all());
+        $accessory = Accessory::create($accessoryRequest->all());
 
         $accessory->save();
 
         return redirect()->route('accessories.index')
-            ->with('success',"accessory successfully added!");
+            ->with('success','Accessory successfully added!');
     }
 
     /**
@@ -67,22 +69,24 @@ class AccessoryController extends Controller
      */
     public function edit(Accessory $accessory)
     {
-        return view('accessories.edit',compact('accessory'));
+        $categories = Category::all();
+
+        return view('accessories.edit',compact('accessory', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\AccessoryRequest $accessoryRequest
      * @param  \App\Models\Accessory  $accessory
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Accessory $accessory)
+    public function update(AccessoryRequest $accessoryRequest, Accessory $accessory)
     {
-        $accessory->update($request->all());
+        $accessory->update($accessoryRequest->all());
 
         return redirect()->route('accessories.index')
-            ->with('success','accessory successfully edited!');
+            ->with('success','Accessory successfully edited!');
     }
 
     /**
@@ -96,6 +100,6 @@ class AccessoryController extends Controller
         $accessory->delete();
 
         return redirect()->route('accessories.index')
-            ->with('success','accessory successfully deleted!');
+            ->with('success','Accessory successfully deleted!');
     }
 }

@@ -23,79 +23,109 @@
         </div>
     @endif
 
-    <form action="{{ route('devices.update',$device->id) }}" method="POST">
+    <form action="{{ route('devices.update',$device->id  ?? '') }}" method="POST">
         @csrf
         @method('PUT')
 
         <div class="row">
-            <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="device_name_idInput">device_name_id:</label>
-                    <input id="device_name_idInput" type="text" name="device_name_id" value="{{ $device->device_name_id }}" class="form-control" placeholder="device_name_id">
+                    <p></p>
+                    <label for="d_nameSelect">Device name:</label>
+                    <select id="d_nameSelect" class="form-select"  name="d_name_id" aria-label="Default select example">
+                        <option value="{{$device->d_name->id ?? ''}}">{{$device->d_name->name ?? ''}}</option>
+                        @foreach($d_names as $key => $d_name)
+                            <option value="{{$d_name->id ?? ''}}" {{ old('d_name_id') == $d_name->id ? "selected" : "" }}>{{$d_name->name ?? ''}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-            <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="device_model_idInput">device_model_id:</label>
-                    <input id="device_model_idInput" type="text" name="device_model_id" value="{{ $device->device_model_id }}" class="form-control" placeholder="device_model_id">
+                    <p></p>
+                    <label for="d_modelSelect">Device model:</label>
+                    <select id="d_modelSelect" class="form-select"  name="d_model_id" aria-label="Default select example">
+                        <option value="{{$device->d_model->id ?? ''}}">{{$device->d_model->name ?? ''}}</option>
+                        @foreach($d_models as $key => $d_model)
+                            <option value="{{$d_model->id ?? ''}}" {{ old('d_model_id') == $d_model->id ? "selected" : "" }}>{{$d_model->name ?? ''}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-            <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="sponsor_inventoryInput">sponsor_inventory:</label>
-                    <input id="sponsor_inventoryInput" type="text" name="sponsor_inventory" value="{{ $device->sponsor_inventory }}" class="form-control" placeholder="sponsor_inventory">
+                    <p></p>
+                    <label for="sponsor_inventoryInput">Sponsor inventory number:</label>
+                    <input id="sponsor_inventoryInput" value="{{$device->sponsor_inventory ?? ''}}" type="text" name="sponsor_inventory" class="form-control @error('sponsor_inventory') is-invalid @enderror" value="{{old('sponsor_inventory')}}" placeholder="Type the sponsor inventory number">
                 </div>
             </div>
-            <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="implementer_inventoryInput">implementer_inventory:</label>
-                    <input id="implementer_inventoryInput" type="text" name="implementer_inventory" value="{{ $device->implementer_inventory }}" class="form-control" placeholder="implementer_inventory">
+                    <p></p>
+                    <label for="implementer_inventoryInput">Implementer inventory number:</label>
+                    <input id="implementer_inventoryInput" value="{{$device->implementer_inventory ?? ''}}" type="text" name="implementer_inventory" class="form-control @error('implementer_inventory') is-invalid @enderror" value="{{old('implementer_inventory')}}" placeholder="implementer_inventory">
                 </div>
             </div>
-            <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="parent_idInput">parent_id:</label>
-                    <input id="parent_idInput" type="text" name="parent_id" value="{{ $device->parent_id }}" class="form-control" placeholder="parent_id">
+                    <p></p>
+                    <label for="parent_idSelect">Associated Device:</label>
+                    <select id="parent_idSelect" class="form-select"  name="parent_id" aria-label="Default select example">
+                        <option value="{{$device->id ?? ''}}">{{$device->d_name->name ?? ''}}&nbsp;|&nbsp;{{$device->d_model->manufacturer->name  ?? ''}}&nbsp;|&nbsp;{{$device->d_model->name ?? ''}}&nbsp;|&nbsp;{{$device->serial_number ?? ''}}</option>
+                        @foreach($devices as $key => $device)
+                            <option value="{{$device->id ?? ''}}" {{ old('device_id') == $device->id ? "selected" : "" }}>{{$device->d_name->name ?? ''}}&nbsp;|&nbsp;{{$device->d_model->manufacturer->name  ?? ''}}&nbsp;|&nbsp;{{$device->d_model->name ?? ''}}&nbsp;|&nbsp;{{$device->serial_number ?? ''}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-            <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="purpose_idInput">purpose_id:</label>
-                    <input id="purpose_idInput" type="text" name="purpose_id" value="{{ $device->purpose_id }}" class="form-control" placeholder="purpose_id">
+                    <p></p>
+                    <label for="purpose_idSelect">Purpose:</label>
+                    <select id="purpose_idSelect" class="form-select"  name="purpose_id" aria-label="Default select example">
+                        <option value="{{$device->purpose->id ?? ''}}">{{$device->purpose->name  ?? ''}}</option>
+                        @foreach($purposes as $key => $purpose)
+                            <option value="{{$purpose->id ?? ''}}" {{ old('purpose_id') == $purpose->id ? "selected" : "" }}>{{$purpose->name ?? ''}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-            <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="serial_numberInput">serial_number:</label>
-                    <input id="serial_numberInput" type="text" name="serial_number" value="{{ $device->serial_number }}" class="form-control" placeholder="serial_number">
+                    <p></p>
+                    <label for="serial_numberInput">Serial number:</label>
+                    <input id="serial_numberInput" value="{{$device->serial_number ?? ''}}" type="text" name="serial_number" class="form-control @error('serial_number') is-invalid @enderror" value="{{old('serial_number')}}" placeholder="serial_number">
                 </div>
             </div>
-            <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="location_idInput">location_id:</label>
-                    <input id="location_idInput" type="text" name="location_id" value="{{ $device->location_id }}" class="form-control" placeholder="location_id">
+                    <p></p>
+                    <label for="location_idInput">Location:</label>
+                    <select id="location_idSelect" class="form-select"  name="location_id" aria-label="Default select example">
+                        <option value="{{$device->location->id  ?? ''}}">{{$device->location->address  ?? ''}}</option>
+                        @foreach($locations as $key => $location)
+                            <option value="{{$location->id ?? ''}}" {{ old('location_id') == $location->id ? "selected" : "" }}>{{$location->address ?? ''}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-            <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="condition_idInput">condition_id:</label>
-                    <input id="condition_idInput" type="text" name="condition_id" value="{{ $device->condition_id }}" class="form-control" placeholder="condition_id">
+                    <p></p>
+                    <label for="condition_idInput">Condition:</label>
+                    <select id="condition_idSelect" class="form-select"  name="condition_id" aria-label="Default select example">
+                        <option value="{{$device->condition->id  ?? ''}}">{{$device->condition->name  ?? ''}}</option>
+                        @foreach($conditions as $key => $condition)
+                            <option value="{{$condition->id ?? ''}}" {{ old('condition_id') == $condition->id ? "selected" : "" }}>{{$condition->name ?? ''}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-            <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="notesInput">notes:</label>
-                    <input id="notesInput" type="text" name="notes" value="{{ $device->notes }}" class="form-control" placeholder="notes">
+                    <p></p>
+                    <label for="notes">Notes:</label>
+                    <input id="notes" value="{{$device->notes ?? ''}}" type="text" name="notes" class="form-control @error('notes') is-invalid @enderror" value="{{old('notes')}}" placeholder="notes">
                 </div>
             </div>
             <p></p>

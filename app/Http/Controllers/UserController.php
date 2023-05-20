@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -28,24 +29,35 @@ class UserController extends Controller
     public function create()
     {
         $users = User::all();
+        $employees = Employee::all();
 
-        return view('users.create', compact('users'));
+        return view('users.create', compact('users', 'employees'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UserRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
+        $request->replace([
+            '_token' => $request->_token,
+            'name' => $request->name,
+            'email' => $request->email,
+            'email_verified_at' => null,
+            'password' => $request->password,
+            'remember_token' => null,
+            'employee_id' => $request->employee_id
+        ]);
+
         $user = User::create($request->all());
 
         $user->save();
 
         return redirect()->route('users.index')
-            ->with('success',"user successfully added!");
+            ->with('success','The user successfully added!');
     }
 
     /**
@@ -67,22 +79,34 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit',compact('user'));
+        $employees = Employee::all();
+
+        return view('users.edit',compact('user', 'employees'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UserRequest  $request
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
+        $request->replace([
+            '_token' => $request->_token,
+            'name' => $request->name,
+            'email' => $request->email,
+            'email_verified_at' => $user->email_verified_at,
+            'password' => $request->password,
+            'remember_token' => $user->remember_token,
+            'employee_id' => $request->employee_id
+        ]);
+
         $user->update($request->all());
 
         return redirect()->route('users.index')
-            ->with('success','user successfully edited!');
+            ->with('success','The user successfully edited!');
     }
 
     /**
@@ -96,6 +120,6 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')
-            ->with('success','user successfully deleted!');
+            ->with('success','The user successfully deleted!');
     }
 }

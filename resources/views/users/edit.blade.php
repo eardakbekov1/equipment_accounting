@@ -31,36 +31,40 @@
             <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="nameInput">username:</label>
+                    <label for="nameInput">Username:</label>
                     <input id="nameInput" type="text" name="name" value="{{ $user->name }}" class="form-control" placeholder="name">
                 </div>
             </div>
             <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="emailInput">email:</label>
+                    <label for="emailInput">E-mail:</label>
                     <input id="emailInput" type="text" name="email" value="{{ $user->email }}" class="form-control" placeholder="email">
                 </div>
             </div>
             <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="email_verified_atInput">user email_verified_at:</label>
-                    <input id="email_verified_atInput" type="text" name="email_verified_at" value="{{ $user->email_verified_at }}" class="form-control" placeholder="email_verified_at">
+                    <label for="password">Password:</label>
+                    <input id="password" type="password" name="password" class="form-control" placeholder="Type the password" required>
+                </div>
+                <div class="form-group">
+                    <p></p>
+                    <label for="password_confirmation">Confirm Password</label>
+                    <input id="password_confirmation" type="password" name="password_confirmation" class="form-control" required>
                 </div>
             </div>
             <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="passwordInput">password:</label>
-                    <input id="passwordInput" type="text" name="password" value="{{ $user->password }}" class="form-control" placeholder="password">
-                </div>
-            </div>
-            <p></p>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <label for="rememberTokenInput">rememberToken:</label>
-                    <input id="rememberTokenInput" type="text" name="rememberToken" value="{{ $user->rememberToken }}" class="form-control" placeholder="rememberToken">
+                    <p></p>
+                    <label for="employee_idSelect">Employee:</label>
+                    <select id="employee_idSelect" class="form-select"  name="employee_id" aria-label="Default select example">
+                        <option value="{{$user->employee->id ?? ''}}">{{ $user->employee->first_name ?? '' }}&nbsp;{{ $user->employee->last_name ?? '' }}</option>
+                        @foreach($employees as $key => $employee)
+                            <option value="{{$employee->id ?? ''}}">{{ $employee->first_name ?? '' }}&nbsp;{{ $employee->last_name ?? '' }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <p></p>

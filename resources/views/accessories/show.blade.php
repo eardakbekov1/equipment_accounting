@@ -42,8 +42,8 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Category_id:</strong>
-                {{ $accessory->category_id }}
+                <strong>Category:</strong>
+                {{ $accessory->category->name }}
             </div>
         </div>
     </div>

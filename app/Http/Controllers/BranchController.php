@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BranchRequest;
 use App\Models\Branch;
-use Illuminate\Http\Request;
+use App\Models\Location;
+use App\Models\Organization;
 
 class BranchController extends Controller
 {
@@ -28,19 +30,21 @@ class BranchController extends Controller
     public function create()
     {
         $branches = Branch::all();
+        $organizations = Organization::all();
+        $locations = Location::all();
 
-        return view('branches.create', compact('branches'));
+        return view('branches.create', compact('branches', 'organizations', 'locations'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\BranchRequest $branchRequest
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(BranchRequest $branchRequest)
     {
-        $branch = Branch::create($request->all());
+        $branch = Branch::create($branchRequest->all());
 
         $branch->save();
 
@@ -67,19 +71,22 @@ class BranchController extends Controller
      */
     public function edit(Branch $branch)
     {
-        return view('branches.edit',compact('branch'));
+        $organizations = Organization::all();
+        $locations = Location::all();
+
+        return view('branches.edit',compact('branch', 'organizations', 'locations'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\BranchRequest $branchRequest
      * @param  \App\Models\Branch  $branch
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Branch $branch)
+    public function update(BranchRequest $branchRequest, Branch $branch)
     {
-        $branch->update($request->all());
+        $branch->update($branchRequest->all());
 
         return redirect()->route('branches.index')
             ->with('success','branch successfully edited!');

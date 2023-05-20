@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Purpose;
-use Illuminate\Http\Request;
+use App\Http\Requests\PurposeRequest;
 
 class PurposeController extends Controller
 {
@@ -35,10 +35,10 @@ class PurposeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PurposeRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(PurposeRequest $request)
     {
         $purpose = Purpose::create($request->all());
 
@@ -73,11 +73,11 @@ class PurposeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PurposeRequest  $request
      * @param  \App\Models\Purpose  $purpose
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Purpose $purpose)
+    public function update(PurposeRequest $request, Purpose $purpose)
     {
         $purpose->update($request->all());
 

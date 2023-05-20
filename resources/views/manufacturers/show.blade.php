@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Manufacturer name: {{ $manufacturer->name }}</h2>
+                <h2>Manufacturer: {{ $manufacturer->name }}</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('manufacturers.index') }}">Back</a>
@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Manufacturer name:</strong>
+                <strong>Manufacturer:</strong>
                 {{ $manufacturer->name }}
             </div>
         </div>

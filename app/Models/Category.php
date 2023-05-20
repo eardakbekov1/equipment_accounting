@@ -16,8 +16,8 @@ class Category extends Model
         return $this->hasMany(Accessory::class);
     }
 
-    public function device_names(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function d_names(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Device_name::class);
+        return $this->hasMany(D_name::class);
     }
 }

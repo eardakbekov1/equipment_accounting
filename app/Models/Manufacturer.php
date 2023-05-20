@@ -11,8 +11,8 @@ class Manufacturer extends Model
 
     protected $guarded = [];
 
-    public function device_models(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function d_models(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Device_model::class);
+        return $this->hasMany(D_model::class);
     }
 }

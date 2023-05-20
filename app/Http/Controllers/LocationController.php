@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Location;
-use Illuminate\Http\Request;
+use App\Http\Requests\LocationRequest;
 
 class LocationController extends Controller
 {
@@ -28,24 +29,25 @@ class LocationController extends Controller
     public function create()
     {
         $locations = Location::all();
+        $cities = City::all();
 
-        return view('locations.create', compact('locations'));
+        return view('locations.create', compact('locations', 'cities'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\LocationRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(LocationRequest $request)
     {
         $location = Location::create($request->all());
 
         $location->save();
 
         return redirect()->route('locations.index')
-            ->with('success',"location successfully added!");
+            ->with('success','The address successfully added!');
     }
 
     /**
@@ -67,22 +69,24 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        return view('locations.edit',compact('location'));
+        $cities = City::all();
+
+        return view('locations.edit',compact('location', 'cities'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\LocationRequest  $request
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Location $location)
+    public function update(LocationRequest $request, Location $location)
     {
         $location->update($request->all());
 
         return redirect()->route('locations.index')
-            ->with('success','location successfully edited!');
+            ->with('success','The address successfully edited!');
     }
 
     /**
@@ -96,6 +100,6 @@ class LocationController extends Controller
         $location->delete();
 
         return redirect()->route('locations.index')
-            ->with('success','location successfully deleted!');
+            ->with('success','The address successfully deleted!');
     }
 }

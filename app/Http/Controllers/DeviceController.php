@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Condition;
+use App\Models\D_model;
+use App\Models\D_name;
 use App\Models\Device;
-use App\Models\Device_model;
-use App\Models\Device_name;
-use Illuminate\Http\Request;
-
+use App\Models\Location;
+use App\Models\Purpose;
+use App\Http\Requests\DeviceRequest;
 class DeviceController extends Controller
 {
     /**
@@ -30,21 +32,24 @@ class DeviceController extends Controller
     public function create()
     {
         $devices = Device::all();
-        $device_names = Device_name::all();
-        $device_models = Device_model::all();
+        $d_names = D_name::all();
+        $d_models = D_model::all();
+        $purposes = Purpose::all();
+        $locations = Location::all();
+        $conditions = Condition::all();
 
-        return view('devices.create', compact('devices', 'device_names', 'device_models'));
+        return view('devices.create', compact('devices', 'd_names', 'd_models', 'purposes', 'locations', 'conditions'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\DeviceRequest  $deviceRequest
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(DeviceRequest  $deviceRequest)
     {
-        $device = Device::create($request->all());
+        $device = Device::create($deviceRequest->all());
 
         $device->save();
 
@@ -71,19 +76,26 @@ class DeviceController extends Controller
      */
     public function edit(Device $device)
     {
-        return view('devices.edit',compact('device'));
+        $devices = Device::all();
+        $d_names = D_name::all();
+        $d_models = D_model::all();
+        $purposes = Purpose::all();
+        $locations = Location::all();
+        $conditions = Condition::all();
+
+        return view('devices.edit',compact('device', 'devices', 'd_names', 'd_models', 'purposes', 'locations', 'conditions'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\DeviceRequest  $deviceRequest
      * @param  \App\Models\Device  $device
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Device $device)
+    public function update(DeviceRequest $deviceRequest, Device $device)
     {
-        $device->update($request->all());
+        $device->update($deviceRequest->all());
 
         return redirect()->route('devices.index')
             ->with('success','Device successfully edited!');

@@ -19,11 +19,15 @@
         </div>
     @endif
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="categoriesTable">
+        <thead>
         <tr>
             <th>№</th>
-            <th>Category Name</th>
+            <th>Category</th>
+            <th>Action</th>
         </tr>
+        </thead>
+        <tbody>
         @foreach ($categories as $category)
             <tr>
                 <td>{{ ++$i }}</td>
@@ -56,8 +60,17 @@
                 </td>
             </tr>
         @endforeach
+        </tbody>
     </table>
 
     {!! $categories->links() !!}
 
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function () {
+            $('#categoriesTable').DataTable();
+        });
+    </script>
+@endpush

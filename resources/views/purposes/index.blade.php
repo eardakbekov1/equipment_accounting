@@ -4,7 +4,7 @@
     <div class="row">
         <div class="grid text-center">
             <div>
-                <h2>purposes</h2>
+                <h2>Purposes</h2>
             </div>
             <div>
                 <a class="btn btn-success" href="{{ route('purposes.create') }}">Create a new purpose</a>
@@ -19,11 +19,15 @@
         </div>
     @endif
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="purposesTable">
+        <thead>
         <tr>
             <th>№</th>
-            <th>purpose Name</th>
+            <th>Purpose</th>
+            <th>Action</th>
         </tr>
+        </thead>
+        <tbody>
         @foreach ($purposes as $purpose)
             <tr>
                 <td>{{ ++$i }}</td>
@@ -56,8 +60,17 @@
                 </td>
             </tr>
         @endforeach
+        </tbody>
     </table>
 
     {!! $purposes->links() !!}
 
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function () {
+            $('#purposesTable').DataTable();
+        });
+    </script>
+@endpush

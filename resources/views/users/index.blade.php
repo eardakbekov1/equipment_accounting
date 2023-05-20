@@ -4,7 +4,7 @@
     <div class="row">
         <div class="grid text-center">
             <div>
-                <h2>users</h2>
+                <h2>Users</h2>
             </div>
             <div>
                 <a class="btn btn-success" href="{{ route('users.create') }}">Create a new user</a>
@@ -19,23 +19,23 @@
         </div>
     @endif
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="usersTable">
+        <thead>
         <tr>
             <th>№</th>
-            <th>name</th>
-            <th>email</th>
-            <th>emial_varified_at</th>
-            <th>password</th>
-            <th>rememberToken</th>
+            <th>Username</th>
+            <th>E-mail</th>
+            <th>Employee</th>
+            <th>Action</th>
         </tr>
+        </thead>
+        <tbody>
         @foreach ($users as $user)
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
-                <td>{{ $user->emial_varified_at }}</td>
-                <td>{{ $user->password }}</td>
-                <td>{{ $user->rememberToken }}</td>
+                <td>{{ $user->employee->first_name ?? '' }}&nbsp;{{ $user->employee->last_name ?? '' }}</td>
                 <td>
                     <form action="{{ route('users.destroy',$user->id) }}" method="POST">
 
@@ -64,8 +64,17 @@
                 </td>
             </tr>
         @endforeach
+        </tbody>
     </table>
 
     {!! $users->links() !!}
 
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function () {
+            $('#usersTable').DataTable();
+        });
+    </script>
+@endpush

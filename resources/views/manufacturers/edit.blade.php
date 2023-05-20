@@ -31,7 +31,7 @@
             <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <label for="nameInput">Manufacturer name:</label>
+                    <label for="nameInput">Manufacturer:</label>
                     <input id="nameInput" type="text" name="name" value="{{ $manufacturer->name }}" class="form-control" placeholder="name">
                 </div>
             </div>

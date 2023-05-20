@@ -22,10 +22,11 @@
     <table class="table table-bordered">
         <tr>
             <th>№</th>
-            <th>Accessory Name</th>
+            <th>Accessory</th>
             <th>Quantity</th>
             <th>Notes</th>
-            <th>Category_id</th>
+            <th>Category</th>
+            <th>Control buttons</th>
         </tr>
         @foreach ($accessories as $accessory)
             <tr>
@@ -33,7 +34,7 @@
                 <td>{{ $accessory->name }}</td>
                 <td>{{ $accessory->quantity }}</td>
                 <td>{{ $accessory->notes }}</td>
-                <td>{{ $accessory->category_id }}</td>
+                <td>{{ $accessory->category->name }}</td>
                 <td>
                     <form action="{{ route('accessories.destroy',$accessory->id) }}" method="POST">
 

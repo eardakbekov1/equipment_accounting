@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
-use Illuminate\Http\Request;
+use App\Models\Organization;
+use App\Models\Position;
 
 class EmployeeController extends Controller
 {
@@ -28,17 +30,19 @@ class EmployeeController extends Controller
     public function create()
     {
         $employees = Employee::all();
+        $organizations = Organization::all();
+        $positions = Position::all();
 
-        return view('employees.create', compact('employees'));
+        return view('employees.create', compact('employees', 'organizations', 'positions'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\EmployeeRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
         $employee = Employee::create($request->all());
 
@@ -67,17 +71,20 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        return view('employees.edit',compact('employee'));
+        $organizations = Organization::all();
+        $positions = Position::all();
+
+        return view('employees.edit',compact('employee', 'organizations', 'positions'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\EmployeeRequest $request
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Employee $employee)
+    public function update(EmployeeRequest $request, Employee $employee)
     {
         $employee->update($request->all());
 

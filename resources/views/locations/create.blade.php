@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>New location creating</h2>
+                <h2>Add new address</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('locations.index') }}">Back</a>
@@ -30,16 +30,21 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <p></p>
-                    <label for="city_idInput">location:</label>
-                    <input id="city_idInput" type="text" name="city_id" class="form-control" placeholder="Choose the city">
+                    <label for="city_idSelect">city:</label>
+                    <select id="city_idSelect" class="form-select"  name="city_id" aria-label="Choose the city">
+                        <option>Choose the city</option>
+                        @foreach($cities as $key => $city)
+                            <option value=" {{$city->id}} " {{ old('city_id') == $city->id ? "selected" : "" }}>{{$city->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <p></p>
-                    <label for="addressInput">address:</label>
-                    <input id="addressInput" type="text" name="address" class="form-control" placeholder="Type location's address">
+                    <label for="addressInput">Address:</label>
+                    <input id="addressInput" type="text" name="address" class="form-control @error('address') is-invalid @enderror" value="{{old('address')}}" placeholder="Type the address">
                 </div>
             </div>
             <p></p>

@@ -4,10 +4,10 @@
     <div class="row">
         <div class="grid text-center">
             <div>
-                <h2>locations</h2>
+                <h2>Addresses</h2>
             </div>
             <div>
-                <a class="btn btn-success" href="{{ route('locations.create') }}">Create a new location</a>
+                <a class="btn btn-success" href="{{ route('locations.create') }}">Add new address</a>
             </div>
             <p></p>
         </div>
@@ -19,16 +19,20 @@
         </div>
     @endif
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="locationsTable">
+        <thead>
         <tr>
             <th>№</th>
-            <th>city_id</th>
-            <th>address</th>
+            <th>City</th>
+            <th>Address</th>
+            <th>Action</th>
         </tr>
+        </thead>
+        <tbody>
         @foreach ($locations as $location)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $location->city_id }}</td>
+                <td>{{ $location->city->name ?? ''}}</td>
                 <td>{{ $location->address }}</td>
                 <td>
                     <form action="{{ route('locations.destroy',$location->id) }}" method="POST">
@@ -58,8 +62,17 @@
                 </td>
             </tr>
         @endforeach
+        </tbody>
     </table>
 
     {!! $locations->links() !!}
 
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function () {
+            $('#locationsTable').DataTable();
+        });
+    </script>
+@endpush

@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class AddUniqueConstraintToAPValuesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('a_p_values', function (Blueprint $table) {
+            $table->unique(['p_value', 'accessory_a_parameter_id']);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('a_p_values', function (Blueprint $table) {
+            $table->dropUnique(['p_value', 'accessory_a_parameter_id']);
+        });
+    }
+}

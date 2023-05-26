@@ -105,4 +105,13 @@ class EmployeeController extends Controller
         return redirect()->route('employees.index')
             ->with('success','employee successfully deleted!');
     }
+
+    public function cart()
+    {
+        return view('employees.cart');
+    }
+    public function addToCart($id)
+    {
+
+    }
 }

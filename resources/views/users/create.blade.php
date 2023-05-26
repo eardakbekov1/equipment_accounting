@@ -47,14 +47,13 @@
                 <div class="form-group">
                     <p></p>
                     <label for="password">Password:</label>
-                    <input id="password" type="password" name="password" class="form-control @error('password') is-invalid @enderror" value="{{old('password')}}" placeholder="Type the user password" required>
+                    <input id="password" type="password" name="password" class="form-control" placeholder="Type the user password" required>
                 </div>
                 <div class="form-group">
                     <p></p>
                     <label for="password_confirmation">Confirm Password</label>
                     <input id="password_confirmation" type="password" name="password_confirmation" required
-                           class="form-control @error('password') is-invalid @enderror"
-                           value="{{old('password')}}">
+                           class="form-control @error('password') is-invalid @enderror">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

@@ -38,4 +38,81 @@
             </div>
         </div>
     </div>
+    <p></p>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Roles</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($roles as $role)
+            <tr>
+                <td>{{ $role->name }}</td>
+                <td>
+                    @if($user->hasRole($role->name))
+                        <button class="btn btn-danger assignRoleButton" id="roleAssignBtn-{{$role->id}}"
+                                data-user-id="{{$user->id}}" data-role-id="{{$role->id}}">Unbind role
+                        </button>
+                    @else
+                        <button class="btn btn-primary assignRoleButton" id="roleAssignBtn-{{$role->id}}"
+                                data-user-id="{{$user->id}}" data-role-id="{{$role->id}}">Assign role
+                        </button>
+                    @endif
+                    <div class="message"></div>
+                </td>
+            </tr>
+
+        @endforeach
+        </tbody>
+    </table>
+
 @endsection
+
+@push('js')
+    <script>
+
+        $(document).ready(function () {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.assignRoleButton').click(function (e) {
+                $(this).prop('disabled', true);
+                let userId = $(this).data('user-id');
+                let roleId = $(this).data('role-id');
+                console.log(roleId);
+                $.ajax({
+                    url: '{{route('assignRole')}}',
+                    type: 'POST',
+                    data: {
+                        user_id: userId,
+                        role_id: roleId
+                    },
+                    success: function (response) {
+                        $(e.target).prop('disabled', false);
+                        if($(e.target).hasClass('btn-primary')){
+                            $(e.target).removeClass('btn-primary');
+                            $(e.target).addClass('btn-danger');
+                        } else {
+                            $(e.target).addClass('btn-primary');
+                            $(e.target).removeClass('btn-danger');
+                        }
+                        $(e.target).parent().find('div.message').text(response.result);
+                        // $('#message-' + $ro).text(response.result);
+                    },
+                    error: function (xhr, status, error) {
+                        $(e.target).prop('disabled', false);
+                        // Отобразить сообщение об ошибке
+                        $(e.target).parent().find('div.message').text('The error occured: ' + error);
+                    }
+                });
+            });
+        });
+
+    </script>
+@endpush

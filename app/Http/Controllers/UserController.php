@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -42,15 +43,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $request->replace([
-            '_token' => $request->_token,
-            'name' => $request->name,
-            'email' => $request->email,
-            'email_verified_at' => null,
-            'password' => $request->password,
-            'remember_token' => null,
-            'employee_id' => $request->employee_id
-        ]);
+        $request['password'] = bcrypt($request->password);
 
         $user = User::create($request->all());
 
@@ -68,7 +61,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show',compact('user'));
+        $roles = Role::all();
+        $userRoleFound = false;
+        $userRoles = $user->roles;
+
+        return view('users.show',compact('user', 'roles', 'userRoleFound', 'userRoles'));
     }
 
     /**
@@ -93,15 +90,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $request->replace([
-            '_token' => $request->_token,
-            'name' => $request->name,
-            'email' => $request->email,
-            'email_verified_at' => $user->email_verified_at,
-            'password' => $request->password,
-            'remember_token' => $user->remember_token,
-            'employee_id' => $request->employee_id
-        ]);
+        $request['password'] = bcrypt($request->password);
 
         $user->update($request->all());
 

@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\History;
 use App\Http\Requests\HistoryRequest;
 
+
 class HistoryController extends Controller
 {
     /**
@@ -16,9 +17,7 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $histories = History::latest()->paginate(5);
-        $devices = Device::all();
-        $employees = Employee::all();
+        $histories = History::all();
 
         return view('histories.index',compact('histories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);

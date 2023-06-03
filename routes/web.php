@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
 });
 
 Auth::routes();
@@ -49,8 +50,15 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::resource('roles', \App\Http\Controllers\RoleController::class);
     Route::resource('users', \App\Http\Controllers\UserController::class);
     Route::post('/assign-role', [\App\Http\Controllers\RoleController::class, 'assignRole'])->name('assignRole');
-    Route::get('cart', [\App\Http\Controllers\EmployeeController::class, 'cart'])->name('cart');
-    Route::get('add-to-cart/{id}', [\App\Http\Controllers\EmployeeController::class, 'addToCart'])->name('addToCart');
+    Route::get('cart', [EmployeeController::class, 'cart'])->name('cart');
+    Route::get('add-to-cart', [EmployeeController::class, 'addToCart'])->name('add.to.cart');
+    Route::get('add-employee-to-cart', [EmployeeController::class, 'addEmployeeToCart'])->name('add.employee.to.cart');
+    Route::delete('remove-from-cart', [EmployeeController::class, 'remove'])->name('remove.from.cart');
+    Route::delete('remove-employee-from-cart', [EmployeeController::class, 'removeEmployee'])->name('remove.employee.from.cart');
+    Route::delete('clear-box', [EmployeeController::class, 'clearBox'])->name('clear.box');
+    Route::post('cart-store', [\App\Http\Controllers\EmployeeController::class, 'cartStore'])->name('cart.store');
+    Route::get('send-to-storage', [EmployeeController::class, 'sendToStorage'])->name('send.to.storage');
+    Route::resource('statuses', \App\Http\Controllers\StatusController::class);
 });
 
 Route::middleware(['auth:sanctum', 'role:admin|reviewer'])->group(function () {

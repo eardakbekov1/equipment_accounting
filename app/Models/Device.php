@@ -60,4 +60,9 @@ class Device extends Model
     {
         return $this->belongsTo(Location::class);
     }
+
+    public function status(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Status::class);
+    }
 }

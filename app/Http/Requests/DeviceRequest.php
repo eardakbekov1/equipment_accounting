@@ -38,9 +38,10 @@ class DeviceRequest extends FormRequest
             'parent_id' => 'integer|min:0|max:99999999999|nullable',
             'purpose_id' => 'integer|min:0|max:99999999999|nullable',
             'serial_number' => ['required', 'string', 'max:255', $flag ?  Rule::unique('devices')->ignore($this->route('device')) : 'unique:devices'],
-            'location_id' => 'integer|min:0|max:99999999999|nullable',
+            'address' => 'string|max:255|nullable',
             'condition_id' => 'integer|min:0|max:99999999999|nullable',
-            'notes' => 'string|max:255|nullable'
+            'notes' => 'string|max:255|nullable',
+            'status_id' => 'integer|min:0|max:99999999999|nullable'
         ];
     }
 }

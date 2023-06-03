@@ -1,4 +1,4 @@
-@extends('layouts.authorized')
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
@@ -12,12 +12,6 @@
             <p></p>
         </div>
     </div>
-
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
 
     <table class="table table-bordered">
         <tr>

@@ -13,16 +13,10 @@
         </div>
     </div>
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
-
     <table class="table table-bordered" id="devicesTable">
         <thead>
         <tr>
-            <th>№</th>
+            <th>ID</th>
             <th>Device Name</th>
             <th>Device Model</th>
             <th>Serial Number</th>
@@ -32,6 +26,7 @@
             <th>Location</th>
             <th>Condition</th>
             <th>Notes</th>
+            <th>Status</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -42,13 +37,14 @@
                 <td>{{ ++$i ?? ''}}</td>
                 <td>{{ $device->d_name->name ?? ''}}</td>
                 <td>{{ $device->d_model->manufacturer->name  ?? ''}}&nbsp;|&nbsp;{{ $device->d_model->name ?? ''}}</td>
-                <td>{{ $device->serial_number ?? ''}}</td>
-                <td>{{ $device->implementer_inventory ?? ''}}</td>
-                <td>{{ $device->sponsor_inventory ?? ''}}</td>
+                <td>{{ $device->serial_number}}</td>
+                <td>{{ $device->implementer_inventory}}</td>
+                <td>{{ $device->sponsor_inventory}}</td>
                 <td>{{ $device->purpose->name ?? ''}}</td>
                 <td>{{ $device->location->address ?? ''}}</td>
                 <td>{{ $device->condition->name ?? ''}}</td>
-                <td>{{ $device->notes ?? ''}}</td>
+                <td>{{ $device->notes}}</td>
+                <td>{{ $device->status->name ?? ''}}</td>
                 <td>
                     <form action="{{ route('devices.destroy',$device->id) }}" method="POST">
 
@@ -80,8 +76,6 @@
         </tbody>
     </table>
 
-    {!! $devices->links() !!}
-
 @endsection
 
 @push('js')
@@ -96,12 +90,38 @@
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#devicesTable').DataTable({
-                dom: 'Bfrtip',
+            var table = $('#devicesTable').DataTable({
+                dom: 'lBfrtip',
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'copy',
+                        className: 'btn-custom',
+                        text: 'Copy'
+                    },
+                    {
+                        extend: 'csv',
+                        className: 'btn-custom',
+                        text: 'CSV'
+                    },
+                    {
+                        extend: 'excel',
+                        className: 'btn-custom',
+                        text: 'Excel'
+                    },
+                    {
+                        extend: 'pdf',
+                        className: 'btn-custom',
+                        text: 'PDF'
+                    },
+                    {
+                        extend: 'print',
+                        className: 'btn-custom',
+                        text: 'Print'
+                    }
                 ]
             } );
+            table.buttons().container()
+                .appendTo( '#example_wrapper .col-md-6:eq(0)' );
         });
     </script>
 @endpush

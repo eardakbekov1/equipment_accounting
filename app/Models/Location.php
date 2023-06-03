@@ -11,9 +11,9 @@ class Location extends Model
 
     protected $guarded = [];
 
-    public function branch(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function branches(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasOne(Branch::class);
+        return $this->hasMany(Branch::class);
     }
 
     public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -21,8 +21,8 @@ class Location extends Model
         return $this->belongsTo(City::class);
     }
 
-    public function device(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function devices(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasOne(Device::class);
+        return $this->hasMany(Device::class);
     }
 }

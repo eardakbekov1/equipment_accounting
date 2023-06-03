@@ -27,22 +27,20 @@
         @csrf
 
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-group">
                     <p></p>
                     <label for="first_nameInput">Employee first name:</label>
                     <input id="first_nameInput" type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{old('first_name')}}" placeholder="Type the employee first name">
                 </div>
             </div>
-            <p></p>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                 <div class="form-group">
                     <p></p>
                     <label for="last_nameInput">Employee last name:</label>
                     <input id="last_nameInput" type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{old('last_name')}}" placeholder="Type the employee last name">
                 </div>
             </div>
-            <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <p></p>
@@ -50,7 +48,6 @@
                     <input id="surnameInput" type="text" name="surname" class="form-control @error('surname') is-invalid @enderror" value="{{old('surname')}}" placeholder="Type the employee surname">
                 </div>
             </div>
-            <p></p>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <p></p>

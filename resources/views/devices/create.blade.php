@@ -99,13 +99,8 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <p></p>
-                    <label for="location_idInput">Location:</label>
-                    <select id="location_idSelect" class="form-select"  name="location_id" aria-label="Default select example">
-                        <option value="">Choose the purpose of the device</option>
-                        @foreach($locations as $key => $location)
-                            <option value="{{$location->id ?? ''}}" {{ old('location_id') == $location->id ? "selected" : "" }}>{{$location->address ?? ''}}</option>
-                        @endforeach
-                    </select>
+                    <label for="addressInput">Location address:</label>
+                    <input id="addressInput" type="text" name="address" class="form-control @error('address') is-invalid @enderror" value="{{old('address')}}" placeholder="address">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -125,6 +120,18 @@
                     <p></p>
                     <label for="notes">Notes:</label>
                     <input id="notes" type="text" name="notes" class="form-control @error('notes') is-invalid @enderror" value="{{old('notes')}}" placeholder="notes">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <p></p>
+                    <label for="condition_idInput">Status:</label>
+                    <select id="condition_idSelect" class="form-select"  name="status_id" aria-label="Default select example">
+                        <option>Choose the status of the device</option>
+                        @foreach($statuses as $key => $status)
+                            <option value="{{$status->id}}">{{$status->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <p></p>

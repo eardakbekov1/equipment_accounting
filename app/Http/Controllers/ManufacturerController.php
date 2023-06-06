@@ -14,9 +14,11 @@ class ManufacturerController extends Controller
      */
     public function index()
     {
-        $manufacturers = Manufacturer::latest()->paginate(5);
+        $manufacturers = Manufacturer::all();
 
-        return view('manufacturers.index',compact('manufacturers'))
+        $titles = ['Manufacturers', 'manufacturer', 'manufacturers'];
+
+        return view('manufacturers.index',compact('manufacturers', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -28,8 +30,9 @@ class ManufacturerController extends Controller
     public function create()
     {
         $manufacturers = Manufacturer::all();
+        $titles = ['Manufacturers', 'manufacturer', 'manufacturers', 'Create'];
 
-        return view('manufacturers.create', compact('manufacturers'));
+        return view('manufacturers.create', compact('manufacturers', 'titles'));
     }
 
     /**
@@ -56,7 +59,9 @@ class ManufacturerController extends Controller
      */
     public function show(Manufacturer $manufacturer)
     {
-        return view('manufacturers.show',compact('manufacturer'));
+        $titles = ['Manufacturers', 'manufacturer', 'manufacturers', 'About'];
+
+        return view('manufacturers.show',compact('manufacturer', 'titles'));
     }
 
     /**
@@ -67,7 +72,9 @@ class ManufacturerController extends Controller
      */
     public function edit(Manufacturer $manufacturer)
     {
-        return view('manufacturers.edit',compact('manufacturer'));
+        $titles = ['Manufacturers', 'manufacturer', 'manufacturers', 'Edit'];
+
+        return view('manufacturers.edit',compact('manufacturer', 'titles'));
     }
 
     /**

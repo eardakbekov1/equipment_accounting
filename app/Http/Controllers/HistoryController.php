@@ -19,7 +19,9 @@ class HistoryController extends Controller
     {
         $histories = History::all();
 
-        return view('histories.index',compact('histories'))
+        $titles = ['Histories', 'history', 'histories'];
+
+        return view('histories.index',compact('histories', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -34,8 +36,9 @@ class HistoryController extends Controller
 
         $devices = Device::all();
         $employees = Employee::all();
+        $titles = ['Histories', 'history', 'histories', 'Create'];
 
-        return view('histories.create', compact('histories', 'devices', 'employees'));
+        return view('histories.create', compact('histories', 'devices', 'employees', 'titles'));
     }
 
     /**
@@ -62,7 +65,9 @@ class HistoryController extends Controller
      */
     public function show(History $history)
     {
-        return view('histories.show',compact('history'));
+        $titles = ['Histories', 'history', 'histories', 'About'];
+
+        return view('histories.show',compact('history', 'titles'));
     }
 
     /**
@@ -75,8 +80,9 @@ class HistoryController extends Controller
     {
         $devices = Device::all();
         $employees = Employee::all();
+        $titles = ['Histories', 'history', 'histories', 'Edit'];
 
-        return view('histories.edit',compact('history', 'devices', 'employees'));
+        return view('histories.edit',compact('history', 'devices', 'employees', 'titles'));
     }
 
     /**

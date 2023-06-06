@@ -17,9 +17,11 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::latest()->paginate(5);
+        $roles = Role::all();
 
-        return view('roles.index', compact('roles'))
+        $titles = ['Roles', 'role', 'roles'];
+
+        return view('roles.index', compact('roles', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -31,8 +33,9 @@ class RoleController extends Controller
     public function create()
     {
         $roles = Role::all();
+        $titles = ['Roles', 'role', 'roles', 'Create'];
 
-        return view('roles.create', compact('roles'));
+        return view('roles.create', compact('roles', 'titles'));
     }
 
     /**
@@ -59,7 +62,9 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        return view('roles.show', compact('role'));
+        $titles = ['Roles', 'role', 'roles', 'About'];
+
+        return view('roles.show', compact('role', 'titles'));
     }
 
     /**
@@ -70,7 +75,9 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('roles.edit', compact('role'));
+        $titles = ['Roles', 'role', 'roles', 'Create', 'Edit'];
+
+        return view('roles.edit', compact('role', 'titles'));
     }
 
     /**

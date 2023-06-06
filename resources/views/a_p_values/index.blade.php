@@ -1,19 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Accessories' parameters values</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('a_p_values.create') }}">Set values for parameters of an accessory</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered">
+    <thead>
         <tr>
             <th>№</th>
             <th>Accessory</th>
@@ -21,6 +9,8 @@
             <th>Value</th>
             <th>Control buttons</th>
         </tr>
+    </thead>
+    <tbody>
         @foreach ($a_p_values as $a_p_value)
             <tr>
                 <td>{{ ++$i }}</td>
@@ -55,8 +45,18 @@
                 </td>
             </tr>
         @endforeach
-    </table>
-
-    {!! $a_p_values->links() !!}
-
+    </tbody>
+    <thead>
+    <tr>
+        <th>№</th>
+        <th>Accessory</th>
+        <th>Parameter</th>
+        <th>Value</th>
+        <th>Control buttons</th>
+    </tr>
+    </thead>
 @endsection
+
+@push('js')
+
+@endpush

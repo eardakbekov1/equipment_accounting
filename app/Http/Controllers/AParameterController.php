@@ -14,9 +14,11 @@ class AParameterController extends Controller
      */
     public function index()
     {
-        $a_parameters = A_parameter::latest()->paginate(5);
+        $a_parameters = A_parameter::all();
 
-        return view('a_parameters.index',compact('a_parameters'))
+        $titles = ['Accessory parameters', 'accessory parameter', 'a_parameters'];
+
+        return view('a_parameters.index',compact('a_parameters', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -28,8 +30,9 @@ class AParameterController extends Controller
     public function create()
     {
         $a_parameters = A_parameter::all();
+        $titles = ['Accessory parameters', 'accessory parameter', 'a_parameters', 'Create'];
 
-        return view('a_parameters.create', compact('a_parameters'));
+        return view('a_parameters.create', compact('a_parameters', 'titles'));
     }
 
     /**
@@ -56,7 +59,9 @@ class AParameterController extends Controller
      */
     public function show(A_parameter $a_parameter)
     {
-        return view('a_parameters.show',compact('a_parameter'));
+        $titles = ['Accessory parameters', 'accessory parameter', 'a_parameters', 'About'];
+
+        return view('a_parameters.show',compact('a_parameter', 'titles'));
     }
 
     /**
@@ -67,7 +72,9 @@ class AParameterController extends Controller
      */
     public function edit(A_parameter $a_parameter)
     {
-        return view('a_parameters.edit',compact('a_parameter'));
+        $titles = ['Accessory parameters', 'accessory parameter', 'a_parameters', 'Edit'];
+
+        return view('a_parameters.edit',compact('a_parameter', 'titles'));
     }
 
     /**

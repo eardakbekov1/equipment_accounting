@@ -1,19 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Histories</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('histories.create') }}">Fix the transfer of an equipment</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered" id="historiesTable">
         <thead>
         <tr>
             <th>№</th>
@@ -63,14 +50,20 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
+<tfoot>
+<tr>
+    <th>№</th>
+    <th>Handovered date</th>
+    <th>Returned back date</th>
+    <th>Device</th>
+    <th>Employee</th>
+    <th>Notes</th>
+    <th>Action</th>
+</tr>
+</tfoot>
 
 @endsection
 
 @push('js')
-    <script>
-        $(document).ready(function () {
-            $('#historiesTable').DataTable();
-        });
-    </script>
+
 @endpush

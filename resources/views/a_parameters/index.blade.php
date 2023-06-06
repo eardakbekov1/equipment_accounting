@@ -1,25 +1,15 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Parameters of accessories</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('a_parameters.create') }}">Create a new parameter of accessory</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered">
+    <thead>
         <tr>
             <th>№</th>
             <th>Parameter of accessory</th>
             <th>Notes</th>
             <th>Control buttons</th>
         </tr>
+    </thead>
+    <tbody>
         @foreach ($a_parameters as $a_parameter)
             <tr>
                 <td>{{ ++$i }}</td>
@@ -53,8 +43,13 @@
                 </td>
             </tr>
         @endforeach
-    </table>
-
-    {!! $a_parameters->links() !!}
-
+    </tbody>
+    <thead>
+    <tr>
+        <th>№</th>
+        <th>Parameter of accessory</th>
+        <th>Notes</th>
+        <th>Control buttons</th>
+    </tr>
+    </thead>
 @endsection

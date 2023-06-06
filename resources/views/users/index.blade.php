@@ -1,25 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Users</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('users.create') }}">Create a new user</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
-
-    <table class="table table-bordered" id="usersTable">
         <thead>
         <tr>
             <th>№</th>
@@ -65,16 +46,18 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
-
-    {!! $users->links() !!}
+<tfoot>
+<tr>
+    <th>№</th>
+    <th>Username</th>
+    <th>E-mail</th>
+    <th>Employee</th>
+    <th>Action</th>
+</tr>
+</tfoot>
 
 @endsection
 
 @push('js')
-    <script>
-        $(document).ready(function () {
-            $('#usersTable').DataTable();
-        });
-    </script>
+
 @endpush

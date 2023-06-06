@@ -1,19 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Purposes</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('purposes.create') }}">Create a new purpose</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered" id="purposesTable">
         <thead>
         <tr>
             <th>№</th>
@@ -55,16 +42,16 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
-
-    {!! $purposes->links() !!}
+<tfoot>
+<tr>
+    <th>№</th>
+    <th>Purpose</th>
+    <th>Action</th>
+</tr>
+</tfoot>
 
 @endsection
 
 @push('js')
-    <script>
-        $(document).ready(function () {
-            $('#purposesTable').DataTable();
-        });
-    </script>
+
 @endpush

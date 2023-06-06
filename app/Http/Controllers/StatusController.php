@@ -14,9 +14,11 @@ class StatusController extends Controller
      */
     public function index()
     {
-        $statuses = Status::latest()->paginate(5);
+        $statuses = Status::all();
 
-        return view('statuses.index',compact('statuses'))
+        $titles = ['Statuses', 'status', 'statuses'];
+
+        return view('statuses.index',compact('statuses', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -28,8 +30,9 @@ class StatusController extends Controller
     public function create()
     {
         $statuses = Status::all();
+        $titles = ['Statuses', 'status', 'statuses', 'Create'];
 
-        return view('statuses.create', compact('statuses'));
+        return view('statuses.create', compact('statuses', 'titles'));
     }
 
     /**
@@ -56,7 +59,9 @@ class StatusController extends Controller
      */
     public function show(status $status)
     {
-        return view('statuses.show',compact('status'));
+        $titles = ['Statuses', 'status', 'statuses', 'About'];
+
+        return view('statuses.show',compact('status', 'titles'));
     }
 
     /**
@@ -67,7 +72,9 @@ class StatusController extends Controller
      */
     public function edit(status $status)
     {
-        return view('statuses.edit',compact('status'));
+        $titles = ['Statuses', 'status', 'statuses', 'Edit'];
+
+        return view('statuses.edit',compact('status', 'titles'));
     }
 
     /**

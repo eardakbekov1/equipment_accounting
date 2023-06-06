@@ -14,9 +14,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()->paginate(5);
+        $categories = Category::all();
 
-        return view('categories.index',compact('categories'))
+        $titles = ['Categories', 'category', 'categories'];
+
+        return view('categories.index',compact('categories', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -28,8 +30,9 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $titles = ['Categories', 'category', 'categories', 'Create'];
 
-        return view('categories.create', compact('categories'));
+        return view('categories.create', compact('categories', 'titles'));
     }
 
     /**
@@ -56,7 +59,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('categories.show',compact('category'));
+        $titles = ['Categories', 'category', 'categories', 'About'];
+
+        return view('categories.show',compact('category', 'titles'));
     }
 
     /**
@@ -67,7 +72,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit',compact('category'));
+        $titles = ['Categories', 'category', 'categories', 'Edit'];
+
+        return view('categories.edit',compact('category', 'titles'));
     }
 
     /**

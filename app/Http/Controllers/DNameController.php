@@ -15,9 +15,11 @@ class DNameController extends Controller
      */
     public function index()
     {
-        $d_names = D_name::latest()->paginate(5);
+        $d_names = D_name::all();
 
-        return view('d_names.index',compact('d_names'))
+        $titles = ['Device names', 'device name', 'd_names'];
+
+        return view('d_names.index',compact('d_names', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -30,8 +32,9 @@ class DNameController extends Controller
     {
         $d_names = D_name::all();
         $categories = Category::all();
+        $titles = ['Device names', 'device name', 'd_names', 'Create'];
 
-        return view('d_names.create', compact('d_names', 'categories'));
+        return view('d_names.create', compact('d_names', 'categories', 'titles'));
     }
 
     /**
@@ -58,7 +61,9 @@ class DNameController extends Controller
      */
     public function show(D_name $d_name)
     {
-        return view('d_names.show',compact('d_name'));
+        $titles = ['Device names', 'device name', 'd_names', 'About'];
+
+        return view('d_names.show',compact('d_name', 'titles'));
     }
 
     /**
@@ -70,8 +75,9 @@ class DNameController extends Controller
     public function edit(D_name $d_name)
     {
         $categories = Category::all();
+        $titles = ['Device names', 'device name', 'd_names', 'Edit'];
 
-        return view('d_names.edit',compact('d_name', 'categories'));
+        return view('d_names.edit',compact('d_name', 'categories', 'titles'));
     }
 
     /**

@@ -11,9 +11,9 @@ class D_p_value extends Model
 
     protected $guarded = [];
 
-    public function D_name_d_parameter(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function d_parameter(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(D_name_d_parameter::class);
+        return $this->belongsTo(D_parameter::class);
     }
 
     public function device(): \Illuminate\Database\Eloquent\Relations\BelongsTo

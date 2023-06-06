@@ -1,37 +1,15 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTECreate')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Change device description:</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('devices.index') }}">back</a>
-            </div>
-        </div>
-    </div>
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            A problem occurred while processing your request.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <form action="{{ route('devices.update',$device->id  ?? '') }}" method="POST">
         @csrf
         @method('PUT')
 
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="d_nameSelect">Device name:</label>
+                    <label for="d_nameSelect">* Device name:</label>
                     <select id="d_nameSelect" class="form-select"  name="d_name_id" aria-label="Default select example">
                         <option value="{{$device->d_name->id ?? ''}}">{{$device->d_name->name ?? ''}}</option>
                         @foreach($d_names as $key => $d_name)
@@ -40,10 +18,10 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="d_modelSelect">Device model:</label>
+                    <label for="d_modelSelect">* Device model:</label>
                     <select id="d_modelSelect" class="form-select"  name="d_model_id" aria-label="Default select example">
                         <option value="{{$device->d_model->id ?? ''}}">{{$device->d_model->name ?? ''}}</option>
                         @foreach($d_models as $key => $d_model)
@@ -52,21 +30,21 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="sponsor_inventoryInput">Sponsor inventory number:</label>
+                    <label for="sponsor_inventoryInput">* Sponsor inventory number:</label>
                     <input id="sponsor_inventoryInput" value="{{$device->sponsor_inventory ?? ''}}" type="text" name="sponsor_inventory" class="form-control" placeholder="Type the sponsor inventory number">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="implementer_inventoryInput">Implementer inventory number:</label>
+                    <label for="implementer_inventoryInput">* Implementer inventory number:</label>
                     <input id="implementer_inventoryInput" value="{{$device->implementer_inventory ?? ''}}" type="text" name="implementer_inventory" class="form-control" placeholder="implementer_inventory">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
                     <label for="parent_idSelect">Associated Device:</label>
@@ -78,7 +56,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
                     <label for="purpose_idSelect">Purpose:</label>
@@ -90,21 +68,21 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="serial_numberInput">Serial number:</label>
+                    <label for="serial_numberInput">* Serial number:</label>
                     <input id="serial_numberInput" value="{{$device->serial_number ?? ''}}" type="text" name="serial_number" class="form-control" placeholder="serial_number">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
                     <label for="addressInput">Locatin address:</label>
                     <input id="addressInput" value="{{$device->location->address ?? ''}}" type="text" name="address" class="form-control" placeholder="address">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
                     <label for="condition_idInput">Condition:</label>
@@ -116,14 +94,14 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
                     <label for="notes">Notes:</label>
                     <input id="notes" value="{{$device->notes ?? ''}}" type="text" name="notes" class="form-control" placeholder="notes">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
                     <label for="status_idInput">Condition:</label>
@@ -136,7 +114,7 @@
                 </div>
             </div>
             <p></p>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>

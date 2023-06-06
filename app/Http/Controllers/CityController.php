@@ -14,9 +14,11 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::latest()->paginate(5);
+        $cities = City::all();
 
-        return view('cities.index',compact('cities'))
+        $titles = ['Cities', 'city', 'cities', 'Create'];
+
+        return view('cities.index',compact('cities', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -28,8 +30,9 @@ class CityController extends Controller
     public function create()
     {
         $cities = City::all();
+        $titles = ['Cities', 'city', 'cities', 'Create'];
 
-        return view('cities.create', compact('cities'));
+        return view('cities.create', compact('cities', 'titles'));
     }
 
     /**
@@ -56,7 +59,9 @@ class CityController extends Controller
      */
     public function show(City $city)
     {
-        return view('cities.show',compact('city'));
+        $titles = ['Cities', 'city', 'cities', 'About'];
+
+        return view('cities.show',compact('city', 'titles'));
     }
 
     /**
@@ -67,7 +72,9 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        return view('cities.edit',compact('city'));
+        $titles = ['Cities', 'city', 'cities', 'Create', 'Edit'];
+
+        return view('cities.edit',compact('city', 'titles'));
     }
 
     /**

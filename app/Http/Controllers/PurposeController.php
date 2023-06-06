@@ -14,9 +14,11 @@ class PurposeController extends Controller
      */
     public function index()
     {
-        $purposes = Purpose::latest()->paginate(5);
+        $purposes = Purpose::all();
 
-        return view('purposes.index',compact('purposes'))
+        $titles = ['Purposes', 'purpose', 'purposes'];
+
+        return view('purposes.index',compact('purposes', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -28,8 +30,9 @@ class PurposeController extends Controller
     public function create()
     {
         $purposes = Purpose::all();
+        $titles = ['Purposes', 'purpose', 'purposes', 'Create'];
 
-        return view('purposes.create', compact('purposes'));
+        return view('purposes.create', compact('purposes', 'titles'));
     }
 
     /**
@@ -56,7 +59,9 @@ class PurposeController extends Controller
      */
     public function show(Purpose $purpose)
     {
-        return view('purposes.show',compact('purpose'));
+        $titles = ['Purposes', 'purpose', 'purposes', 'About'];
+
+        return view('purposes.show',compact('purpose', 'titles'));
     }
 
     /**
@@ -67,7 +72,9 @@ class PurposeController extends Controller
      */
     public function edit(Purpose $purpose)
     {
-        return view('purposes.edit',compact('purpose'));
+        $titles = ['Purposes', 'purpose', 'purposes', 'Edit'];
+
+        return view('purposes.edit',compact('purpose', 'titles'));
     }
 
     /**

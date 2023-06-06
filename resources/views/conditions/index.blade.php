@@ -1,19 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Conditions</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('conditions.create') }}">Create a new condition</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered" id="conditionsTable">
         <thead>
         <tr>
             <th>№</th>
@@ -55,16 +42,16 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
-
-    {!! $conditions->links() !!}
+<tfoot>
+<tr>
+    <th>№</th>
+    <th>Condition Name</th>
+    <th>Action</th>
+</tr>
+</tfoot>
 
 @endsection
 
 @push('js')
-    <script>
-        $(document).ready(function () {
-            $('#conditionsTable').DataTable();
-        });
-    </script>
+
 @endpush

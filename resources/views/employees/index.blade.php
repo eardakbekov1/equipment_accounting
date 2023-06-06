@@ -1,19 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Employees</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('employees.create') }}">Create a new employee</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered" id="employeesTable">
         <thead>
         <tr>
             <th>№</th>
@@ -69,16 +56,22 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
-
-    {!! $employees->links() !!}
-
+                                <tfoot>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Employee first name</th>
+                                    <th>Employee last name</th>
+                                    <th>Employee surname</th>
+                                    <th>Organization</th>
+                                    <th>Position</th>
+                                    <th>Phone number</th>
+                                    <th>Domain Username</th>
+                                    <th>Email</th>
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
 @endsection
 
 @push('js')
-<script>
-    $(document).ready(function () {
-        $('#employeesTable').DataTable();
-    });
-</script>
+
 @endpush

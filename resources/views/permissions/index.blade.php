@@ -1,19 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Permissions</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('permissions.create') }}">Create a new permission</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered" id="permissionsTable">
         <thead>
         <tr>
             <th>№</th>
@@ -55,16 +42,16 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
-
-    {!! $permissions->links() !!}
+<tfoot>
+<tr>
+    <th>№</th>
+    <th>Permission</th>
+    <th>Action</th>
+</tr>
+</tfoot>
 
 @endsection
 
 @push('js')
-    <script>
-        $(document).ready(function () {
-            $('#permissionsTable').DataTable();
-        });
-    </script>
+
 @endpush

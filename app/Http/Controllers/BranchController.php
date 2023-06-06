@@ -16,9 +16,11 @@ class BranchController extends Controller
      */
     public function index()
     {
-        $branches = Branch::latest()->paginate(5);
+        $branches = Branch::all();
 
-        return view('branches.index',compact('branches'))
+        $titles = ['Branches', 'branch', 'branches'];
+
+        return view('branches.index',compact('branches', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -32,8 +34,9 @@ class BranchController extends Controller
         $branches = Branch::all();
         $organizations = Organization::all();
         $locations = Location::all();
+        $titles = ['Branches', 'branch', 'branches', 'Create'];
 
-        return view('branches.create', compact('branches', 'organizations', 'locations'));
+        return view('branches.create', compact('branches', 'organizations', 'locations', 'titles'));
     }
 
     /**
@@ -60,7 +63,9 @@ class BranchController extends Controller
      */
     public function show(Branch $branch)
     {
-        return view('branches.show',compact('branch'));
+        $titles = ['Branches', 'branch', 'branches', 'About'];
+
+        return view('branches.show',compact('branch', 'titles'));
     }
 
     /**
@@ -73,8 +78,9 @@ class BranchController extends Controller
     {
         $organizations = Organization::all();
         $locations = Location::all();
+        $titles = ['Branches', 'branch', 'branches', 'Edit'];
 
-        return view('branches.edit',compact('branch', 'organizations', 'locations'));
+        return view('branches.edit',compact('branch', 'organizations', 'locations', 'titles'));
     }
 
     /**

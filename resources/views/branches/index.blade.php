@@ -1,19 +1,7 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Branches</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('branches.create') }}">Create a new branch</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered">
+<thead>
         <tr>
             <th>№</th>
             <th>Branch Name</th>
@@ -22,13 +10,15 @@
             <th>Address</th>
             <th>Control buttons</th>
         </tr>
+</thead>
+<tbody>
         @foreach ($branches as $branch)
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $branch->name }}</td>
                 <td>{{ $branch->phone_number }}</td>
-                <td>{{ $branch->organization->name }}</td>
-                <td>{{ $branch->location->address }}</td>
+                <td>{{ $branch->organization->name ?? ''}}</td>
+                <td>{{ $branch->location->address ?? ''}}</td>
                 <td>
                     <form action="{{ route('branches.destroy',$branch->id) }}" method="POST">
 
@@ -57,8 +47,15 @@
                 </td>
             </tr>
         @endforeach
-    </table>
-
-    {!! $branches->links() !!}
-
+</tbody>
+    <tfoot>
+    <tr>
+        <th>№</th>
+        <th>Branch Name</th>
+        <th>Phone number</th>
+        <th>Organization</th>
+        <th>Address</th>
+        <th>Control buttons</th>
+    </tr>
+    </tfoot>
 @endsection

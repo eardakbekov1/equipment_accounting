@@ -1,19 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Device names</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('d_names.create') }}">Create a new device name</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered" id="d_namesTable">
         <thead>
         <tr>
             <th>№</th>
@@ -57,16 +44,17 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
-
-    {!! $d_names->links() !!}
+<tfoot>
+<tr>
+    <th>№</th>
+    <th>Device name</th>
+    <th>Category</th>
+    <th>Action</th>
+</tr>
+</tfoot>
 
 @endsection
 
 @push('js')
-    <script>
-        $(document).ready(function () {
-            $('#d_namesTable').DataTable();
-        });
-    </script>
+
 @endpush

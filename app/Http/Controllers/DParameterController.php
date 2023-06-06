@@ -14,9 +14,11 @@ class DParameterController extends Controller
      */
     public function index()
     {
-        $d_parameters = D_parameter::latest()->paginate(5);
+        $d_parameters = D_parameter::all();
 
-        return view('d_parameters.index',compact('d_parameters'))
+        $titles = ['Additional parameters', 'additional parameter', 'd_parameters'];
+
+        return view('d_parameters.index',compact('d_parameters', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -28,8 +30,9 @@ class DParameterController extends Controller
     public function create()
     {
         $d_parameters = D_parameter::all();
+        $titles = ['Additional parameters', 'additional parameter', 'd_parameters', 'Create'];
 
-        return view('d_parameters.create', compact('d_parameters'));
+        return view('d_parameters.create', compact('d_parameters', 'titles'));
     }
 
     /**
@@ -56,7 +59,9 @@ class DParameterController extends Controller
      */
     public function show(D_parameter $d_parameter)
     {
-        return view('d_parameters.show',compact('d_parameter'));
+        $titles = ['Additional parameters', 'additional parameter', 'd_parameters', 'About'];
+
+        return view('d_parameters.show',compact('d_parameter', 'titles'));
     }
 
     /**
@@ -67,7 +72,9 @@ class DParameterController extends Controller
      */
     public function edit(D_parameter $d_parameter)
     {
-        return view('d_parameters.edit',compact('d_parameter'));
+        $titles = ['Additional parameters', 'additional parameter', 'd_parameters', 'Edit'];
+
+        return view('d_parameters.edit',compact('d_parameter', 'titles'));
     }
 
     /**

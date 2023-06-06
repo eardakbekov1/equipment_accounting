@@ -14,9 +14,11 @@ class PositionController extends Controller
      */
     public function index()
     {
-        $positions = Position::latest()->paginate(5);
+        $positions = Position::all();
 
-        return view('positions.index',compact('positions'))
+        $titles = ['Positions', 'position', 'positions'];
+
+        return view('positions.index',compact('positions', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -28,8 +30,9 @@ class PositionController extends Controller
     public function create()
     {
         $positions = Position::all();
+        $titles = ['Positions', 'position', 'positions', 'Create'];
 
-        return view('positions.create', compact('positions'));
+        return view('positions.create', compact('positions', 'titles'));
     }
 
     /**
@@ -56,7 +59,9 @@ class PositionController extends Controller
      */
     public function show(Position $position)
     {
-        return view('positions.show',compact('position'));
+        $titles = ['Positions', 'position', 'positions', 'About'];
+
+        return view('positions.show',compact('position', 'titles'));
     }
 
     /**
@@ -67,7 +72,9 @@ class PositionController extends Controller
      */
     public function edit(Position $position)
     {
-        return view('positions.edit',compact('position'));
+        $titles = ['Positions', 'position', 'positions', 'Edit'];
+
+        return view('positions.edit',compact('position', 'titles'));
     }
 
     /**

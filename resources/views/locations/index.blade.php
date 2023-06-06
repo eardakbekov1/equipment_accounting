@@ -1,19 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Addresses</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('locations.create') }}">Add new address</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered" id="locationsTable">
         <thead>
         <tr>
             <th>№</th>
@@ -57,16 +44,17 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
-
-    {!! $locations->links() !!}
+<tfoot>
+<tr>
+    <th>№</th>
+    <th>City</th>
+    <th>Address</th>
+    <th>Action</th>
+</tr>
+</tfoot>
 
 @endsection
 
 @push('js')
-    <script>
-        $(document).ready(function () {
-            $('#locationsTable').DataTable();
-        });
-    </script>
+
 @endpush

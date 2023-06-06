@@ -1,19 +1,7 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Accessories</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('accessories.create') }}">Create a new accessory</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered">
+    <thead>
         <tr>
             <th>№</th>
             <th>Accessory</th>
@@ -22,6 +10,8 @@
             <th>Category</th>
             <th>Control buttons</th>
         </tr>
+    </thead>
+    <tbody>
         @foreach ($accessories as $accessory)
             <tr>
                 <td>{{ ++$i }}</td>
@@ -57,8 +47,15 @@
                 </td>
             </tr>
         @endforeach
-    </table>
-
-    {!! $accessories->links() !!}
-
+    </tbody>
+    <tfoot>
+    <tr>
+        <th>№</th>
+        <th>Accessory</th>
+        <th>Quantity</th>
+        <th>Notes</th>
+        <th>Category</th>
+        <th>Control buttons</th>
+    </tr>
+    </tfoot>
 @endsection

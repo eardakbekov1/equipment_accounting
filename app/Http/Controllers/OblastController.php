@@ -14,9 +14,10 @@ class OblastController extends Controller
      */
     public function index()
     {
-        $oblasts = Oblast::latest()->paginate(5);
+        $oblasts = Oblast::all();
+        $titles = ['Oblasts', 'oblast', 'oblasts'];
 
-        return view('oblasts.index',compact('oblasts'))
+        return view('oblasts.index',compact(['oblasts', 'titles']))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -28,8 +29,9 @@ class OblastController extends Controller
     public function create()
     {
         $oblasts = Oblast::all();
+        $titles = ['Oblasts', 'oblast', 'oblasts', 'Create'];
 
-        return view('oblasts.create', compact('oblasts'));
+        return view('oblasts.create', compact('oblasts', 'titles'));
     }
 
     /**
@@ -56,7 +58,9 @@ class OblastController extends Controller
      */
     public function show(Oblast $oblast)
     {
-        return view('oblasts.show',compact('oblast'));
+        $titles = ['Oblasts', 'oblast', 'oblasts', 'About'];
+
+        return view('oblasts.show',compact('oblast', 'titles'));
     }
 
     /**
@@ -67,7 +71,9 @@ class OblastController extends Controller
      */
     public function edit(Oblast $oblast)
     {
-        return view('oblasts.edit',compact('oblast'));
+        $titles = ['Oblasts', 'oblast', 'oblasts', 'Edit'];
+
+        return view('oblasts.edit',compact('oblast', 'titles'));
     }
 
     /**

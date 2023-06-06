@@ -11,4 +11,9 @@ class A_p_value extends Model
 
     protected $guarded = [];
 
+    public function a_parameter(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(A_parameter::class);
+    }
+
 }

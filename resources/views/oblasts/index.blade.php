@@ -1,23 +1,14 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>oblasts</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('oblasts.create') }}">Create a new oblast</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered">
+    <thead>
         <tr>
             <th>№</th>
-            <th>oblast Name</th>
+            <th>Oblast</th>
+            <th>Action</th>
         </tr>
+    </thead>
+    <tbody>
         @foreach ($oblasts as $oblast)
             <tr>
                 <td>{{ ++$i }}</td>
@@ -50,8 +41,13 @@
                 </td>
             </tr>
         @endforeach
-    </table>
-
-    {!! $oblasts->links() !!}
+    </tbody>
+    <tfoot>
+    <tr>
+        <th>№</th>
+        <th>Oblast</th>
+        <th>Action</th>
+    </tr>
+    </tfoot>
 
 @endsection

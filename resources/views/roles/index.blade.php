@@ -1,19 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Roles</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('roles.create') }}">Create a new role</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered" id="rolesTable">
         <thead>
         <tr>
             <th>№</th>
@@ -55,16 +42,16 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
-
-    {!! $roles->links() !!}
+<tfoot>
+<tr>
+    <th>№</th>
+    <th>Role</th>
+    <th>Action</th>
+</tr>
+</tfoot>
 
 @endsection
 
 @push('js')
-    <script>
-        $(document).ready(function () {
-            $('#rolesTable').DataTable();
-        });
-    </script>
+
 @endpush

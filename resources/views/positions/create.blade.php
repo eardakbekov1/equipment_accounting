@@ -1,28 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTECreate')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>New position creating</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('positions.index') }}">Back</a>
-            </div>
-        </div>
-    </div>
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            A problem occurred while processing your request.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <form action="{{ route('positions.store') }}" method="POST">
         @csrf
 
@@ -30,8 +8,8 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <p></p>
-                    <label for="titleInput">position title:</label>
-                    <input id="titleInput" type="text" name="title" class="form-control" placeholder="Title">
+                    <label for="nameInput">Position name:</label>
+                    <input id="nameInput" type="text" name="name" class="form-control" placeholder="name">
                 </div>
             </div>
             <p></p>

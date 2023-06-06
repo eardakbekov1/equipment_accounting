@@ -1,19 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Categories</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('categories.create') }}">Create a new category</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered" id="categoriesTable">
         <thead>
         <tr>
             <th>№</th>
@@ -55,16 +42,15 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
-
-    {!! $categories->links() !!}
-
+        <tfoot>
+        <tr>
+            <th>№</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+        </tfoot>
 @endsection
 
 @push('js')
-    <script>
-        $(document).ready(function () {
-            $('#categoriesTable').DataTable();
-        });
-    </script>
+
 @endpush

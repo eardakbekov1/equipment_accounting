@@ -14,9 +14,11 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::latest()->paginate(5);
+        $departments = Department::all();
 
-        return view('departments.index',compact('departments'))
+        $titles = ['Departments', 'department', 'departments'];
+
+        return view('departments.index',compact('departments', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -28,8 +30,9 @@ class DepartmentController extends Controller
     public function create()
     {
         $departments = Department::all();
+        $titles = ['Departments', 'department', 'departments', 'Create'];
 
-        return view('departments.create', compact('departments'));
+        return view('departments.create', compact('departments', 'titles'));
     }
 
     /**
@@ -56,7 +59,9 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        return view('departments.show',compact('department'));
+        $titles = ['Departments', 'department', 'departments', 'About'];
+
+        return view('departments.show',compact('department', 'titles'));
     }
 
     /**
@@ -67,7 +72,9 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        return view('departments.edit',compact('department'));
+        $titles = ['Departments', 'department', 'departments', 'Edit'];
+
+        return view('departments.edit',compact('department', 'titles'));
     }
 
     /**

@@ -1,96 +1,116 @@
-@extends('layouts.cart')
+@extends('layouts.adminLTEbox')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Employee: {{ $employee->first_name ?? '' }}</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('employees.index') }}">Back</a>
-            </div>
-        </div>
-    </div>
-    <p></p>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Employee first name:</strong>
-                {{ $employee->first_name ?? '' }}
-            </div>
-        </div>
-    </div>
-    <p></p>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Employee last name:</strong>
-                {{ $employee->last_name ?? '' }}
-            </div>
-        </div>
-    </div>
-    <p></p>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Employee surname:</strong>
-                {{ $employee->surname ?? '' }}
-            </div>
-        </div>
-    </div>
-    <p></p>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Organization:</strong>
-                {{ $employee->organization->name ?? '' }}
-            </div>
-        </div>
-    </div>
-    <p></p>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Position:</strong>
-                {{ $employee->position->name ?? '' }}
-            </div>
-        </div>
-    </div>
-    <p></p>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Phone_number:</strong>
-                {{ $employee->phone_number ?? '' }}
-            </div>
-        </div>
-    </div>
-    <p></p>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Domain username:</strong>
-                {{ $employee->username ?? '' }}
-            </div>
-        </div>
-    </div>
-    <p></p>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6  col-lg-6">
-            <div class="form-group">
-                <strong>Email:</strong>
-                {{ $employee->email ?? '' }}
-            </div>
-        </div>
-    </div>
-    <p></p>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div>
+                                <h4>The {{ $titles[1] }} description:</h4>
+                            </div>
+                            <div class="ml-auto">
+                                <a class="btn btn-primary" href="{{ route($titles[2].'.index') }}">Back</a>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                            <table id="orderOnly" class="table table-bordered table-striped col-10">
+                                <thead>
+                                <tr>
+                                    <th>Characteristic</th>
+                                    <th>Value</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><strong>Employee first name:</strong></td>
+                                    <td>{{ $employee->first_name ?? '' }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Employee last name:</strong></td>
+                                    <td>{{ $employee->last_name ?? '' }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Employee surname:</strong></td>
+                                    <td>{{ $employee->surname ?? '' }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Organization:</strong></td>
+                                    <td>{{ $employee->organization->name ?? '' }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Position:</strong></td>
+                                    <td>{{ $employee->position->name ?? '' }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phone_number:</strong></td>
+                                    <td>{{ $employee->phone_number ?? '' }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Domain username:</strong></td>
+                                    <td>{{ $employee->username ?? '' }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email:</strong></td>
+                                    <td>{{ $employee->email ?? '' }}</td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Characteristic</th>
+                                    <th>Value</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+
     <button type="button" class="btn btn-success addEmployee" data-id="{{ $employee->id }}">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
             <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
         </svg>
+        Assemble equipment for the employee
     </button>
     <div class="message"></div>
-
+                                </div>
+                                <div class="col-8">
+                                    <table id="example2" class="table table-bordered table-striped col-10">
+                                        <thead>
+                                        <tr>
+                                            <th>Handovered date</th>
+                                            <th>Returned back date</th>
+                                            <th>Device</th>
+                                            <th>Employee</th>
+                                            <th>Notes</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($histories as $history)
+                                            <tr>
+                                                <td>{{ $history->handovered_date ?? '' }}</td>
+                                                <td>{{ $history->received_date ?? '' }}</td>
+                                                <td>{{ $history->device->d_name->name ?? ''}}&nbsp;|&nbsp;{{$history->device->d_model->manufacturer->name  ?? ''}}&nbsp;|&nbsp;{{$history->device->d_model->name ?? ''}}&nbsp;|&nbsp;{{$history->device->serial_number ?? ''}}</td>
+                                                <td>{{ $history->employee->first_name ?? '' }}&nbsp;{{ $history->employee->last_name ?? '' }}</td>
+                                                <td>{{ $history->notes ?? '' }}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Handovered date</th>
+                                            <th>Returned back date</th>
+                                            <th>Device</th>
+                                            <th>Employee</th>
+                                            <th>Notes</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
     <hr>
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -106,7 +126,6 @@
             <table class="table table-bordered devicesTable">
                 <thead>
                 <tr>
-                    <th>№</th>
                     <th>Device Name</th>
                     <th>Device Model</th>
                     <th>Serial Number</th>
@@ -124,9 +143,8 @@
 
                 @foreach ($assignedDevices as $assignedDevice)
                     <tr>
-                        <td>{{ ++$i ?? ''}}</td>
                         <td>{{ $assignedDevice->d_name->name ?? ''}}</td>
-                        <td>{{ $assignedDevice->d_model->manufacturer->name  ?? ''}}&nbsp;|&nbsp;{{ $device->d_model->name ?? ''}}</td>
+                        <td>{{ $assignedDevice->d_model->manufacturer->name ?? ''}}&nbsp;|&nbsp;{{ $device->d_model->name ?? ''}}</td>
                         <td>{{ $assignedDevice->serial_number ?? ''}}</td>
                         <td>{{ $assignedDevice->implementer_inventory ?? ''}}</td>
                         <td>{{ $assignedDevice->sponsor_inventory ?? ''}}</td>
@@ -136,7 +154,7 @@
                         <td>{{ $assignedDevice->notes ?? ''}}</td>
                         <td>{{ $assignedDevice->status->name ?? ''}}</td>
                         <td>
-                            <button type="button" class="btn btn-success toStorage" data-id="{{ $assignedDevice->id }}">To storage</button>
+                            <button type="button" class="btn btn-success toStorage" data-id="{{ $assignedDevice->id ?? ''}}">To storage</button>
                             <div class="message"></div>
                         </td>
                     </tr>
@@ -148,7 +166,6 @@
             <table class="table table-bordered devicesTable">
                 <thead>
                 <tr>
-                    <th>№</th>
                     <th>Device Name</th>
                     <th>Device Model</th>
                     <th>Serial Number</th>
@@ -166,7 +183,6 @@
 
                 @foreach ($devices as $device)
                     <tr>
-                        <td>{{ ++$i ?? ''}}</td>
                         <td>{{ $device->d_name->name ?? ''}}</td>
                         <td>{{ $device->d_model->manufacturer->name  ?? ''}}&nbsp;|&nbsp;{{ $device->d_model->name ?? ''}}</td>
                         <td>{{ $device->serial_number ?? ''}}</td>
@@ -201,15 +217,7 @@
 @endsection
 
 @push('js')
-
-    <script>
-        let dataTable;
-        $(document).ready(function () {
-            dataTable = $('.devicesTable').DataTable();
-        });
-    </script>
-
-        <script>
+                                <script>
 
             $(document).ready(function () {
 
@@ -234,6 +242,8 @@
                             eventBtn.removeClass('btn-success');
                             eventBtn.addClass('btn-secondary');
                             eventBtn.parent().find('div.message').text(response.result);
+                            $('#empAddMessage').show();
+                            // $('#empAddMessage').text(response.result);
                         },
                         error: function (xhr, status, error) {
                             eventBtn.prop('disabled', false);

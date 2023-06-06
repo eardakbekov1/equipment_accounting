@@ -1,28 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTECreate')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Change the value of the accessory's parameter:</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('a_p_values.index') }}">back</a>
-            </div>
-        </div>
-    </div>
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            A problem occurred while processing your request.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <form action="{{ route('a_p_values.update',$a_p_value->id) }}" method="POST">
         @csrf
         @method('PUT')

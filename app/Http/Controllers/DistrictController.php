@@ -14,9 +14,11 @@ class DistrictController extends Controller
      */
     public function index()
     {
-        $districts = District::latest()->paginate(5);
+        $districts = District::all();
 
-        return view('districts.index',compact('districts'))
+        $titles = ['Districts', 'district', 'districts'];
+
+        return view('districts.index',compact('districts', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -28,8 +30,9 @@ class DistrictController extends Controller
     public function create()
     {
         $districts = District::all();
+        $titles = ['Districts', 'district', 'districts', 'Create'];
 
-        return view('districts.create', compact('districts'));
+        return view('districts.create', compact('districts', 'titles'));
     }
 
     /**
@@ -56,7 +59,9 @@ class DistrictController extends Controller
      */
     public function show(District $district)
     {
-        return view('districts.show',compact('district'));
+        $titles = ['Districts', 'district', 'districts', 'About'];
+
+        return view('districts.show',compact('district', 'titles'));
     }
 
     /**
@@ -67,7 +72,9 @@ class DistrictController extends Controller
      */
     public function edit(District $district)
     {
-        return view('districts.edit',compact('district'));
+        $titles = ['Districts', 'district', 'districts', 'Edit'];
+
+        return view('districts.edit',compact('district', 'titles'));
     }
 
     /**

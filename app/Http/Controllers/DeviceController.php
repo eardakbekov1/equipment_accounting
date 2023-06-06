@@ -8,6 +8,7 @@ use App\Models\D_model;
 use App\Models\D_name;
 use App\Models\Device;
 use App\Models\Location;
+use App\Models\Manufacturer;
 use App\Models\Purpose;
 use App\Http\Requests\DeviceRequest;
 use App\Models\Status;
@@ -23,8 +24,9 @@ class DeviceController extends Controller
     public function index()
     {
         $devices = Device::all();
+        $titles = ['Devices', 'device', 'devices'];
 
-        return view('devices.index',compact('devices'))
+        return view('devices.index',compact('devices', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -37,12 +39,14 @@ class DeviceController extends Controller
     {
         $devices = Device::all();
         $d_names = D_name::all();
+        $manufacturers = Manufacturer::all();
         $d_models = D_model::all();
         $purposes = Purpose::all();
         $statuses = Status::all();
         $conditions = Condition::all();
+        $titles = ['Devices', 'device', 'devices', 'Create'];
 
-        return view('devices.create', compact('devices', 'd_names', 'd_models', 'purposes', 'conditions', 'statuses'));
+        return view('devices.create', compact('devices', 'd_names', 'manufacturers', 'd_models', 'purposes', 'conditions', 'statuses', 'titles'));
     }
 
     /**
@@ -97,12 +101,10 @@ class DeviceController extends Controller
             'status_id' => $deviceRequest->status_id
         ];
 
-
-
         Device::create($deviceRow);
 
         return redirect()->route('devices.index')
-            ->with('success',"Device successfully added!");
+            ->with('success','Device successfully added!');
     }
 
     /**
@@ -113,7 +115,9 @@ class DeviceController extends Controller
      */
     public function show(Device $device)
     {
-        return view('devices.show',compact('device'));
+        $titles = ['Devices', 'device', 'devices', 'About'];
+
+        return view('devices.show',compact('device', 'titles'));
     }
 
     /**
@@ -126,12 +130,14 @@ class DeviceController extends Controller
     {
         $devices = Device::all();
         $d_names = D_name::all();
+        $manufacturers = Manufacturer::all();
         $d_models = D_model::all();
         $purposes = Purpose::all();
         $statuses = Status::all();
         $conditions = Condition::all();
+        $titles = ['Devices', 'device', 'devices', 'Edit'];
 
-        return view('devices.edit',compact('device', 'devices', 'd_names', 'd_models', 'purposes', 'statuses', 'conditions'));
+        return view('devices.edit', compact('device', 'devices', 'd_names', 'd_models', 'purposes', 'statuses', 'conditions', 'manufacturers', 'titles'));
     }
 
     /**

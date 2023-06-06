@@ -10,9 +10,9 @@ class Accessory extends Model
     use HasFactory;
 
     protected $guarded = [];
-    public function a_parameters(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function a_parameters(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsToMany(A_parameter::class, 'accessory_a_parameter')->withPivot('id', 'created_at', 'updated_at');
+        return $this->hasMany(A_parameter::class);
     }
 
     public function devices(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

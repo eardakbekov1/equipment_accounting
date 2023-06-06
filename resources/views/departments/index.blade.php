@@ -1,29 +1,20 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>departments</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('departments.create') }}">Create a new department</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered">
+<thead>
         <tr>
             <th>№</th>
-            <th>department</th>
-            <th>organization_id</th>
+            <th>Department</th>
+            <th>Organization</th>
+            <th>Action</th>
         </tr>
+</thead>
+<tbody>
         @foreach ($departments as $department)
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $department->name }}</td>
-                <td>{{ $department->organization_id }}</td>
+                <td>{{ $department->organization->name ?? ''}}</td>
                 <td>
                     <form action="{{ route('departments.destroy',$department->id) }}" method="POST">
 
@@ -52,8 +43,13 @@
                 </td>
             </tr>
         @endforeach
-    </table>
-
-    {!! $departments->links() !!}
-
+</tbody>
+    <tfoot>
+    <tr>
+        <th>№</th>
+        <th>Department</th>
+        <th>Organization</th>
+        <th>Action</th>
+    </tr>
+    </tfoot>
 @endsection

@@ -15,9 +15,11 @@ class DModelController extends Controller
      */
     public function index()
     {
-        $d_models = D_model::latest()->paginate(5);
+        $d_models = D_model::all();
 
-        return view('d_models.index',compact('d_models'))
+        $titles = ['Device models', 'device model', 'd_models'];
+
+        return view('d_models.index',compact('d_models', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -30,8 +32,9 @@ class DModelController extends Controller
     {
         $d_models = D_model::all();
         $manufacturers = Manufacturer::all();
+        $titles = ['Device models', 'device model', 'd_models', 'Create'];
 
-        return view('d_models.create', compact('d_models', 'manufacturers'));
+        return view('d_models.create', compact('d_models', 'manufacturers', 'titles'));
     }
 
     /**
@@ -58,7 +61,9 @@ class DModelController extends Controller
      */
     public function show(D_model $d_model)
     {
-        return view('d_models.show',compact('d_model'));
+        $titles = ['Device models', 'device model', 'd_models', 'About'];
+
+        return view('d_models.show',compact('d_model', 'titles'));
     }
 
     /**
@@ -70,8 +75,9 @@ class DModelController extends Controller
     public function edit(D_model $d_model)
     {
         $manufacturers = Manufacturer::all();
+        $titles = ['Device models', 'device model', 'd_models', 'Edit'];
 
-        return view('d_models.edit',compact('d_model', 'manufacturers'));
+        return view('d_models.edit',compact('d_model', 'manufacturers', 'titles'));
     }
 
     /**

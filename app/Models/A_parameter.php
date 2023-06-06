@@ -10,8 +10,13 @@ class A_parameter extends Model
     use HasFactory;
 
     protected $guarded = [];
-    public function Accessories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function accessory(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsToMany(Accessory::class, 'accessory_a_parameter')->withPivot('id', 'created_at', 'updated_at');;
+        return $this->belongsTo(Accessory::class);
+    }
+
+    public function a_p_values(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(A_p_value::class);
     }
 }

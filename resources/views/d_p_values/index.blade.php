@@ -1,19 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Values of device parameters</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('d_p_values.create') }}">Set value for parameter</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered" id="d_p_valuesTable">
         <thead>
         <tr>
             <th>№</th>
@@ -63,14 +50,20 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
+    <tfoot>
+    <tr>
+        <th>№</th>
+        <th>Device name</th>
+        <th>Model</th>
+        <th>Serial number</th>
+        <th>Parameter</th>
+        <th>Value</th>
+        <th>Action</th>
+    </tr>
+    </tfoot>
 
 @endsection
 
 @push('js')
-    <script>
-        $(document).ready(function () {
-            $('#d_p_valuesTable').DataTable();
-        });
-    </script>
+
 @endpush

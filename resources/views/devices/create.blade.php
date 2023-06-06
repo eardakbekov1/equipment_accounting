@@ -1,36 +1,14 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTECreate')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>New device creating</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('devices.index') }}">Back</a>
-            </div>
-        </div>
-    </div>
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            A problem occurred while processing your request.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <form action="{{ route('devices.store') }}" method="POST">
         @csrf
 
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="d_nameSelect">Device name:</label>
+                    <label for="d_nameSelect">* Device name:</label>
                     <select id="d_nameSelect" class="form-select"  name="d_name_id" aria-label="Default select example">
                         <option value="">Choose the type of the device</option>
                         @foreach($d_names as $key => $d_name)
@@ -39,33 +17,33 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="d_modelSelect">Device model:</label>
+                    <label for="d_modelSelect">* Device model:</label>
                     <select id="d_modelSelect" class="form-select"  name="d_model_id" aria-label="Default select example">
                         <option value="">Choose the model of the device</option>
                         @foreach($d_models as $key => $d_model)
-                            <option value="{{$d_model->id ?? ''}}" {{ old('d_model_id') == $d_model->id ? "selected" : "" }}>{{$d_model->name ?? ''}}</option>
+                            <option value="{{$d_model->id ?? ''}}" {{ old('d_model_id') == $d_model->id ? "selected" : "" }}>{{$d_model->manufacturer->name ?? ''}}&nbsp;|&nbsp;{{$d_model->name ?? ''}}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="sponsor_inventoryInput">Sponsor inventory number:</label>
+                    <label for="sponsor_inventoryInput">* Sponsor inventory number:</label>
                     <input id="sponsor_inventoryInput" type="text" name="sponsor_inventory" class="form-control @error('sponsor_inventory') is-invalid @enderror" value="{{old('sponsor_inventory')}}" placeholder="Type the sponsor inventory number">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="implementer_inventoryInput">Implementer inventory number:</label>
+                    <label for="implementer_inventoryInput">* Implementer inventory number:</label>
                     <input id="implementer_inventoryInput" type="text" name="implementer_inventory" class="form-control @error('implementer_inventory') is-invalid @enderror" value="{{old('implementer_inventory')}}" placeholder="implementer_inventory">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
                     <label for="parent_idSelect">Associated Device:</label>
@@ -77,7 +55,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
                     <label for="purpose_idSelect">Purpose:</label>
@@ -89,21 +67,21 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="serial_numberInput">Serial number:</label>
+                    <label for="serial_numberInput">* Serial number:</label>
                     <input id="serial_numberInput" type="text" name="serial_number" class="form-control @error('serial_number') is-invalid @enderror" value="{{old('serial_number')}}" placeholder="serial_number">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
                     <label for="addressInput">Location address:</label>
                     <input id="addressInput" type="text" name="address" class="form-control @error('address') is-invalid @enderror" value="{{old('address')}}" placeholder="address">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
                     <label for="condition_idInput">Condition:</label>
@@ -115,21 +93,21 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
                     <label for="notes">Notes:</label>
                     <input id="notes" type="text" name="notes" class="form-control @error('notes') is-invalid @enderror" value="{{old('notes')}}" placeholder="notes">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
                     <label for="condition_idInput">Status:</label>
                     <select id="condition_idSelect" class="form-select"  name="status_id" aria-label="Default select example">
-                        <option>Choose the status of the device</option>
+                        <option value="">Choose the status of the device</option>
                         @foreach($statuses as $key => $status)
-                            <option value="{{$status->id}}">{{$status->name}}</option>
+                            <option value="{{ $status->id ?? ''}}">{{$status->name}}</option>
                         @endforeach
                     </select>
                 </div>

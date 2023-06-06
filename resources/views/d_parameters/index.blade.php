@@ -1,19 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Additional parameters of devices</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('d_parameters.create') }}">Create a new parameter for device</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered" id="d_parametersTable">
         <thead>
         <tr>
             <th>№</th>
@@ -57,16 +44,16 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
-
-    {!! $d_parameters->links() !!}
-
+    <tfoot>
+    <tr>
+        <th>№</th>
+        <th>Parameter</th>
+        <th>Comments</th>
+        <th>Action</th>
+    </tr>
+    </tfoot>
 @endsection
 
 @push('js')
-    <script>
-        $(document).ready(function () {
-            $('#d_parametersTable').DataTable();
-        });
-    </script>
+
 @endpush

@@ -15,9 +15,11 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::latest()->paginate(5);
+        $locations = Location::all();
 
-        return view('locations.index',compact('locations'))
+        $titles = ['Addresses', 'address', 'locations'];
+
+        return view('locations.index',compact('locations', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -30,8 +32,9 @@ class LocationController extends Controller
     {
         $locations = Location::all();
         $cities = City::all();
+        $titles = ['Addresses', 'address', 'locations', 'Create'];
 
-        return view('locations.create', compact('locations', 'cities'));
+        return view('locations.create', compact('locations', 'cities', 'titles'));
     }
 
     /**
@@ -58,7 +61,9 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        return view('locations.show',compact('location'));
+        $titles = ['Addresses', 'address', 'locations', 'About'];
+
+        return view('locations.show',compact('location', 'titles'));
     }
 
     /**
@@ -70,8 +75,9 @@ class LocationController extends Controller
     public function edit(Location $location)
     {
         $cities = City::all();
+        $titles = ['Addresses', 'address', 'locations', 'Edit'];
 
-        return view('locations.edit',compact('location', 'cities'));
+        return view('locations.edit',compact('location', 'cities', 'titles'));
     }
 
     /**

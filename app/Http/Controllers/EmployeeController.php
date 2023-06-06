@@ -25,9 +25,11 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::latest()->paginate(5);
+        $employees = Employee::all();
 
-        return view('employees.index',compact('employees'))
+        $titles = ['Employees', 'employee', 'employees'];
+
+        return view('employees.index', compact('employees', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -41,8 +43,9 @@ class EmployeeController extends Controller
         $employees = Employee::all();
         $organizations = Organization::all();
         $positions = Position::all();
+        $titles = ['Employees', 'employee', 'employees', 'Create'];
 
-        return view('employees.create', compact('employees', 'organizations', 'positions'));
+        return view('employees.create', compact('employees', 'organizations', 'positions', 'titles'));
     }
 
     /**
@@ -58,7 +61,7 @@ class EmployeeController extends Controller
         $employee->save();
 
         return redirect()->route('employees.index')
-            ->with('success',"employee successfully added!");
+            ->with('success','Employee successfully added!');
     }
 
     /**
@@ -98,7 +101,12 @@ class EmployeeController extends Controller
             $assignedDevice = Device::where('id', '=', $deviceId->device_id)->first();
              $assignedDevices[] = $assignedDevice;
         }
-        return view('employees.show',compact('employee', 'devices', 'cartDevices', 'cartEmployees', 'assignedDevices'))
+
+         $histories = History::where('employee_id', '=', $employee->id)->get();
+
+        $titles = ['Employees', 'employee', 'employees', 'About'];
+
+        return view('employees.show',compact('employee', 'devices', 'cartDevices', 'cartEmployees', 'assignedDevices', 'titles', 'histories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -112,8 +120,9 @@ class EmployeeController extends Controller
     {
         $organizations = Organization::all();
         $positions = Position::all();
+        $titles = ['Employees', 'employee', 'employees', 'Edit'];
 
-        return view('employees.edit',compact('employee', 'organizations', 'positions'));
+        return view('employees.edit',compact('employee', 'organizations', 'positions', 'titles'));
     }
 
     /**
@@ -128,7 +137,7 @@ class EmployeeController extends Controller
         $employee->update($request->all());
 
         return redirect()->route('employees.index')
-            ->with('success','employee successfully edited!');
+            ->with('success','Employee successfully edited!');
     }
 
     /**
@@ -142,7 +151,7 @@ class EmployeeController extends Controller
         $employee->delete();
 
         return redirect()->route('employees.index')
-            ->with('success','employee successfully deleted!');
+            ->with('success','Employee successfully deleted!');
     }
 
     /**
@@ -164,7 +173,9 @@ class EmployeeController extends Controller
             $cartEmployees = $cart['deviceHolders'];
         }
 
-        return view('cart', compact('cartDevices', 'cartEmployees'));
+        $titles = ['Boxes', 'box', 'boxes'];
+
+        return view('cart', compact('cartDevices', 'cartEmployees', 'titles'));
     }
 
     /**
@@ -232,7 +243,7 @@ class EmployeeController extends Controller
 
         session()->put('cart', $cart);
 
-        $result = 'The employee added to the box successfully!';
+        $result = 'The employee successfully selected to accept equipment!';
 
     }
 

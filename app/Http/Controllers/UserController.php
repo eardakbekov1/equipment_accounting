@@ -16,9 +16,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->paginate(5);
+        $users = User::all();
 
-        return view('users.index',compact('users'))
+        $titles = ['Users', 'user', 'users'];
+
+        return view('users.index',compact('users', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -31,8 +33,9 @@ class UserController extends Controller
     {
         $users = User::all();
         $employees = Employee::all();
+        $titles = ['Users', 'user', 'users', 'Create', 'Edit'];
 
-        return view('users.create', compact('users', 'employees'));
+        return view('users.create', compact('users', 'employees', 'titles'));
     }
 
     /**
@@ -64,8 +67,9 @@ class UserController extends Controller
         $roles = Role::all();
         $userRoleFound = false;
         $userRoles = $user->roles;
+        $titles = ['Users', 'user', 'users', 'Edit'];
 
-        return view('users.show',compact('user', 'roles', 'userRoleFound', 'userRoles'));
+        return view('users.show',compact('user', 'roles', 'userRoleFound', 'userRoles', 'titles'));
     }
 
     /**
@@ -77,8 +81,9 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $employees = Employee::all();
+        $titles = ['Users', 'user', 'users', 'Edit'];
 
-        return view('users.edit',compact('user', 'employees'));
+        return view('users.edit',compact('user', 'employees', 'titles'));
     }
 
     /**

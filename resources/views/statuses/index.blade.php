@@ -1,19 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTE')
 
 @section('content')
-    <div class="row">
-        <div class="grid text-center">
-            <div>
-                <h2>Statuses</h2>
-            </div>
-            <div>
-                <a class="btn btn-success" href="{{ route('statuses.create') }}">Create a new status</a>
-            </div>
-            <p></p>
-        </div>
-    </div>
-
-    <table class="table table-bordered" id="statusesTable">
         <thead>
         <tr>
             <th>№</th>
@@ -55,16 +42,16 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
-
-    {!! $statuses->links() !!}
+<tfoot>
+<tr>
+    <th>№</th>
+    <th>status</th>
+    <th>Action</th>
+</tr>
+</tfoot>
 
 @endsection
 
 @push('js')
-    <script>
-        $(document).ready(function () {
-            $('#statusesTable').DataTable();
-        });
-    </script>
+
 @endpush

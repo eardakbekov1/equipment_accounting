@@ -14,9 +14,11 @@ class ConditionController extends Controller
      */
     public function index()
     {
-        $conditions = Condition::latest()->paginate(5);
+        $conditions = Condition::all();
 
-        return view('conditions.index',compact('conditions'))
+        $titles = ['Conditions', 'condition', 'conditions'];
+
+        return view('conditions.index',compact('conditions', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -28,8 +30,9 @@ class ConditionController extends Controller
     public function create()
     {
         $conditions = Condition::all();
+        $titles = ['Conditions', 'condition', 'conditions', 'Create'];
 
-        return view('conditions.create', compact('conditions'));
+        return view('conditions.create', compact('conditions', 'titles'));
     }
 
     /**
@@ -56,7 +59,9 @@ class ConditionController extends Controller
      */
     public function show(Condition $condition)
     {
-        return view('conditions.show',compact('condition'));
+        $titles = ['Conditions', 'condition', 'conditions', 'About'];
+
+        return view('conditions.show',compact('condition', 'titles'));
     }
 
     /**
@@ -67,7 +72,9 @@ class ConditionController extends Controller
      */
     public function edit(Condition $condition)
     {
-        return view('conditions.edit',compact('condition'));
+        $titles = ['Conditions', 'condition', 'conditions', 'Edit'];
+
+        return view('conditions.edit',compact('condition', 'titles'));
     }
 
     /**

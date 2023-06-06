@@ -11,9 +11,9 @@ class D_name extends Model
 
     protected $guarded = [];
 
-    public function d_name_d_parameter(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function d_parameters(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(D_name_d_parameter::class);
+        return $this->hasMany(D_parameter::class);
     }
 
     public function devices(): \Illuminate\Database\Eloquent\Relations\HasMany

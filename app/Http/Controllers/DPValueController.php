@@ -19,7 +19,9 @@ class DPValueController extends Controller
     {
         $d_p_values = D_p_value::all();
 
-        return view('d_p_values.index',compact('d_p_values'))
+        $titles = ['Device parameters values', 'device parameter value', 'd_p_values'];
+
+        return view('d_p_values.index',compact('d_p_values', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -34,8 +36,9 @@ class DPValueController extends Controller
 
         $devices = Device::all();
         $d_parameters = D_parameter::all();
+        $titles = ['Device parameters values', 'device parameter value', 'd_p_values', 'Create'];
 
-        return view('d_p_values.create', compact('d_p_values', 'devices', 'd_parameters'));
+        return view('d_p_values.create', compact('d_p_values', 'devices', 'd_parameters', 'titles'));
     }
 
     /**
@@ -80,7 +83,9 @@ class DPValueController extends Controller
      */
     public function show(D_p_value $d_p_value)
     {
-        return view('d_p_values.show',compact('d_p_value'));
+        $titles = ['Device parameters values', 'device parameter value', 'd_p_values', 'About'];
+
+        return view('d_p_values.show',compact('d_p_value', 'titles'));
     }
 
     /**
@@ -93,8 +98,9 @@ class DPValueController extends Controller
     {
         $devices = Device::all();
         $d_parameters = D_parameter::all();
+        $titles = ['Device parameters values', 'device parameter value', 'd_p_values', 'Edit'];
 
-        return view('d_p_values.edit',compact('d_p_value', 'devices', 'd_parameters'));
+        return view('d_p_values.edit',compact('d_p_value', 'devices', 'd_parameters', 'titles'));
     }
 
     /**

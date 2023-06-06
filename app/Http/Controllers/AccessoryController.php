@@ -15,9 +15,11 @@ class AccessoryController extends Controller
      */
     public function index()
     {
-        $accessories = Accessory::latest()->paginate(5);
+        $accessories = Accessory::all();
 
-        return view('accessories.index',compact('accessories'))
+        $titles = ['Accessories', 'accessory', 'accessories'];
+
+        return view('accessories.index',compact('accessories', 'titles'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -30,8 +32,9 @@ class AccessoryController extends Controller
     {
         $accessories = Accessory::all();
         $categories = Category::all();
+        $titles = ['Accessories', 'accessory', 'accessories', 'Create'];
 
-        return view('accessories.create', compact('accessories', 'categories'));
+        return view('accessories.create', compact('accessories', 'categories', 'titles'));
     }
 
     /**
@@ -58,7 +61,9 @@ class AccessoryController extends Controller
      */
     public function show(Accessory $accessory)
     {
-        return view('accessories.show',compact('accessory'));
+        $titles = ['Accessories', 'accessory', 'accessories', 'About'];
+
+        return view('accessories.show',compact('accessory', 'titles'));
     }
 
     /**
@@ -70,8 +75,9 @@ class AccessoryController extends Controller
     public function edit(Accessory $accessory)
     {
         $categories = Category::all();
+        $titles = ['Accessories', 'accessory', 'accessories', 'Edit'];
 
-        return view('accessories.edit',compact('accessory', 'categories'));
+        return view('accessories.edit',compact('accessory', 'categories', 'titles'));
     }
 
     /**

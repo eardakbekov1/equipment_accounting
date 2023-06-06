@@ -1,28 +1,6 @@
-@extends('layouts.authorized')
+@extends('layouts.adminLTECreate')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Change location description:</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('locations.index') }}">back</a>
-            </div>
-        </div>
-    </div>
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            A problem occurred while processing your request.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <form action="{{ route('locations.update',$location->id) }}" method="POST">
         @csrf
         @method('PUT')

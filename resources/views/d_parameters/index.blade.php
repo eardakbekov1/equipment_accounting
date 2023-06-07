@@ -4,7 +4,8 @@
         <thead>
         <tr>
             <th>№</th>
-            <th>Parameter</th>
+            <th>Device name</th>
+            <th>Parameter (unit)</th>
             <th>Comments</th>
             <th>Action</th>
         </tr>
@@ -13,7 +14,8 @@
         @foreach ($d_parameters as $d_parameter)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $d_parameter->name ?? '' }}</td>
+                <td>{{ $d_parameter->d_name->name ?? '' }}</td>
+                <td>{{ $d_parameter->name ?? '' }} ({{ $d_parameter->unit->name }})</td>
                 <td>{{ $d_parameter->notes ?? '' }}</td>
                 <td>
                     <form action="{{ route('d_parameters.destroy',$d_parameter->id ?? '') }}" method="POST">
@@ -47,7 +49,8 @@
     <tfoot>
     <tr>
         <th>№</th>
-        <th>Parameter</th>
+        <th>Device name</th>
+        <th>Parameter (unit)</th>
         <th>Comments</th>
         <th>Action</th>
     </tr>

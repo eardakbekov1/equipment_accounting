@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeviceParameterStoreRequest;
 use App\Models\City;
 use App\Models\Condition;
 use App\Models\D_model;
 use App\Models\D_name;
+use App\Models\D_p_value;
+use App\Models\D_parameter;
 use App\Models\Device;
+use App\Models\History;
 use App\Models\Location;
 use App\Models\Manufacturer;
 use App\Models\Purpose;
 use App\Http\Requests\DeviceRequest;
 use App\Models\Status;
+use App\Models\Unit;
 use Illuminate\Validation\Rule;
 
 class DeviceController extends Controller
@@ -117,7 +122,12 @@ class DeviceController extends Controller
     {
         $titles = ['Devices', 'device', 'devices', 'About'];
 
-        return view('devices.show',compact('device', 'titles'));
+        $histories = History::where('device_id', '=', $device->id)->get();
+        $d_name_d_parameters = D_parameter::where('d_name_id', '=', $device->d_name->id ?? '')->get();
+        $device_d_p_values = D_p_value::where('device_id', '=', $device->id)->get();
+        $units = Unit::all();
+
+        return view('devices.show', compact('device', 'titles', 'histories', 'd_name_d_parameters', 'device_d_p_values', 'units'));
     }
 
     /**
@@ -210,5 +220,54 @@ class DeviceController extends Controller
 
         return redirect()->route('devices.index')
             ->with('success','Device successfully deleted!');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\DeviceParameterStoreRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deviceParameterStore(DeviceParameterStoreRequest $request)
+    {
+
+        $device = Device::where('id', '=', $request->device_id)->first();
+
+        $unitId = Unit::select('id')
+        ->where('name', '=', $request->unit)->first();
+
+        if($unitId == null){        $d_parameter = [
+            'name' => $request->name,
+            'notes' => $request->notes,
+            'd_name_id' => $device->d_name->id,
+            'unit_id' => null
+        ];}else{
+            $d_parameter = [
+                'name' => $request->name,
+                'notes' => $request->notes,
+                'd_name_id' => $device->d_name->id,
+                'unit_id' => $unitId
+            ];
+        }
+
+        $createdD_parameter = D_parameter::create($d_parameter);
+
+        $d_p_value = [
+            'd_p_value' => $request->d_p_value,
+            'd_parameter_id' => $createdD_parameter->id,
+            'device_id' => $request->device_id
+        ];
+
+        D_p_value::create($d_p_value);
+
+        $titles = ['Devices', 'device', 'devices', 'About'];
+
+        $histories = History::where('device_id', '=', $device->id)->get();
+        $d_name_d_parameters = D_parameter::where('d_name_id', '=', $device->d_name->id ?? '')->get();
+        $device_d_p_values = D_p_value::where('device_id', '=', $device->id)->get();
+        $units = Unit::all();
+
+        return redirect()->route('devices.show', compact('device', 'titles', 'histories', 'd_name_d_parameters', 'device_d_p_values', 'units'))
+            ->with('success','The device parameter successfully added!');
     }
 }

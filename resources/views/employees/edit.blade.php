@@ -9,14 +9,14 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="first_nameInput">* Employee first name:</label>
+                    <label for="first_nameInput"><span class="text-danger">*</span> Employee first name:</label>
                     <input id="first_nameInput" class="form-control" value="{{ $employee->first_name ?? '' }}" type="text" name="first_name" placeholder="Type the employee first name">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="last_nameInput">* Employee last name:</label>
+                    <label for="last_nameInput"><span class="text-danger">*</span> Employee last name:</label>
                     <input id="last_nameInput" class="form-control" value="{{ $employee->last_name ?? '' }}" type="text" name="last_name" placeholder="Type the employee last name">
                 </div>
             </div>

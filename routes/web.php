@@ -59,6 +59,8 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::post('cart-store', [\App\Http\Controllers\EmployeeController::class, 'cartStore'])->name('cart.store');
     Route::get('send-to-storage', [EmployeeController::class, 'sendToStorage'])->name('send.to.storage');
     Route::resource('statuses', \App\Http\Controllers\StatusController::class);
+    Route::resource('units', \App\Http\Controllers\UnitController::class);
+    Route::post('device-parameter-store', [\App\Http\Controllers\DeviceController::class, 'deviceParameterStore'])->name('device.parameter.store');
 });
 
 Route::middleware(['auth:sanctum', 'role:admin|reviewer'])->group(function () {

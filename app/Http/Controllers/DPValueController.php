@@ -49,30 +49,12 @@ class DPValueController extends Controller
      */
     public function store(D_p_valueRequest $request)
     {
-
-        $d_name_id = DB::table('devices')
-            ->select('d_name_id')
-            ->where('id', $request->device_id)->first();
-
-        $d_name_d_parameter_id = DB::table('d_name_d_parameter')
-            ->select('id')
-            ->where('d_name_id', $d_name_id->d_name_id)
-            ->where('d_parameter_id', $request->d_parameter_id)
-            ->first();
-
-        $request->replace([
-            '_token' => $request->_token,
-            'd_p_value' => $request->d_p_value,
-            'd_name_d_parameter_id' => $d_name_d_parameter_id->id,
-            'device_id' => $request->device_id
-        ]);
-
         $d_p_value = D_p_value::create($request->all());
 
         $d_p_value->save();
 
         return redirect()->route('d_p_values.index')
-            ->with('success','d_p_value successfully added!');
+            ->with('success','The device parameter value successfully added!');
     }
 
     /**
@@ -112,27 +94,10 @@ class DPValueController extends Controller
      */
     public function update(D_p_valueRequest $request, D_p_value $d_p_value)
     {
-        $d_name_id = DB::table('devices')
-            ->select('d_name_id')
-            ->where('id', $request->device_id)->first();
-
-        $d_name_d_parameter_id = DB::table('d_name_d_parameter')
-            ->select('id')
-            ->where('d_name_id', $d_name_id->d_name_id)
-            ->where('d_parameter_id', $request->d_parameter_id)
-            ->first();
-
-        $request->replace([
-            '_token' => $request->_token,
-            'd_p_value' => $request->d_p_value,
-            'd_name_d_parameter_id' => $d_name_d_parameter_id->id,
-            'device_id' => $request->device_id
-        ]);
-
         $d_p_value->update($request->all());
 
         return redirect()->route('d_p_values.index')
-            ->with('success','d_p_value successfully edited!');
+            ->with('success','The device parameter value successfully edited!');
     }
 
     /**
@@ -146,6 +111,6 @@ class DPValueController extends Controller
         $d_p_value->delete();
 
         return redirect()->route('d_p_values.index')
-            ->with('success','d_p_value successfully deleted!');
+            ->with('success','The device parameter value successfully deleted!');
     }
 }

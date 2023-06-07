@@ -8,7 +8,7 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="d_nameSelect">* Device name:</label>
+                    <label for="d_nameSelect"><span class="text-danger">*</span> Device name:</label>
                     <select id="d_nameSelect" class="form-select"  name="d_name_id" aria-label="Default select example">
                         <option value="">Choose the type of the device</option>
                         @foreach($d_names as $key => $d_name)
@@ -20,7 +20,7 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="d_modelSelect">* Device model:</label>
+                    <label for="d_modelSelect"><span class="text-danger">*</span> Device model:</label>
                     <select id="d_modelSelect" class="form-select"  name="d_model_id" aria-label="Default select example">
                         <option value="">Choose the model of the device</option>
                         @foreach($d_models as $key => $d_model)
@@ -32,14 +32,14 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="sponsor_inventoryInput">* Sponsor inventory number:</label>
+                    <label for="sponsor_inventoryInput"><span class="text-danger">*</span> Sponsor inventory number:</label>
                     <input id="sponsor_inventoryInput" type="text" name="sponsor_inventory" class="form-control @error('sponsor_inventory') is-invalid @enderror" value="{{old('sponsor_inventory')}}" placeholder="Type the sponsor inventory number">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="implementer_inventoryInput">* Implementer inventory number:</label>
+                    <label for="implementer_inventoryInput"><span class="text-danger">*</span> Implementer inventory number:</label>
                     <input id="implementer_inventoryInput" type="text" name="implementer_inventory" class="form-control @error('implementer_inventory') is-invalid @enderror" value="{{old('implementer_inventory')}}" placeholder="implementer_inventory">
                 </div>
             </div>
@@ -70,7 +70,7 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="serial_numberInput">* Serial number:</label>
+                    <label for="serial_numberInput"><span class="text-danger">*</span> Serial number:</label>
                     <input id="serial_numberInput" type="text" name="serial_number" class="form-control @error('serial_number') is-invalid @enderror" value="{{old('serial_number')}}" placeholder="serial_number">
                 </div>
             </div>

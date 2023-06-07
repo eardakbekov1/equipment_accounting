@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class D_parameterRequest extends FormRequest
+class DeviceParameterStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +24,11 @@ class D_parameterRequest extends FormRequest
     public function rules()
     {
         return [
+            'device_id' => 'required|integer|min:0|max:99999999999',
             'name' => 'required|string|max:255',
-            'notes' => 'nullable|string|max:255',
-            'd_name_id' => 'required|integer|min:0|max:99999999999',
-            'unit_id' => 'nullable|integer|min:0|max:99999999999'
+            'unit' => 'nullable|string|max:255',
+            'd_p_value' => 'required|string|max:255',
+            'notes' => 'nullable|string|max:255'
         ];
     }
 }

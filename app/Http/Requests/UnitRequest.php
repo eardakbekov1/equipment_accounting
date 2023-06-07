@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class D_parameterRequest extends FormRequest
+class UnitRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,14 @@ class D_parameterRequest extends FormRequest
      */
     public function rules()
     {
+        $flag = true;
+
+        if (request()->isMethod('post')) {
+            $flag = false;
+        }
+
         return [
-            'name' => 'required|string|max:255',
-            'notes' => 'nullable|string|max:255',
-            'd_name_id' => 'required|integer|min:0|max:99999999999',
-            'unit_id' => 'nullable|integer|min:0|max:99999999999'
+            'name' => ['required', 'string', 'max:255', $flag ?  Rule::unique('units')->ignore($this->route('unit')) : 'unique:units']
         ];
     }
 }

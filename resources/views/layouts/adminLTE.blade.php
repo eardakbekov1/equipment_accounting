@@ -197,6 +197,13 @@
                                     <p>Histories</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('units.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    &nbsp;&nbsp;
+                                    <p>Units</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -480,11 +487,14 @@
 <!-- Page specific script -->
 <script>
     $(function () {
-        $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
+        $(".example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
+
+        $('.example2').DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": false,
@@ -493,7 +503,8 @@
             "autoWidth": false,
             "responsive": true,
         });
-        $('#orderOnly').DataTable({
+
+        $('.orderOnly').DataTable({
             "paging": false,
             "lengthChange": false,
             "searching": false,

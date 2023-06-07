@@ -9,7 +9,7 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="d_nameSelect">* Device name:</label>
+                    <label for="d_nameSelect"><span class="text-danger">*</span> Device name:</label>
                     <select id="d_nameSelect" class="form-select"  name="d_name_id" aria-label="Default select example">
                         <option value="{{$device->d_name->id ?? ''}}">{{$device->d_name->name ?? ''}}</option>
                         @foreach($d_names as $key => $d_name)
@@ -21,7 +21,7 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="d_modelSelect">* Device model:</label>
+                    <label for="d_modelSelect"><span class="text-danger">*</span> Device model:</label>
                     <select id="d_modelSelect" class="form-select"  name="d_model_id" aria-label="Default select example">
                         <option value="{{$device->d_model->id ?? ''}}">{{$device->d_model->name ?? ''}}</option>
                         @foreach($d_models as $key => $d_model)
@@ -33,14 +33,14 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="sponsor_inventoryInput">* Sponsor inventory number:</label>
+                    <label for="sponsor_inventoryInput"><span class="text-danger">*</span> Sponsor inventory number:</label>
                     <input id="sponsor_inventoryInput" value="{{$device->sponsor_inventory ?? ''}}" type="text" name="sponsor_inventory" class="form-control" placeholder="Type the sponsor inventory number">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="implementer_inventoryInput">* Implementer inventory number:</label>
+                    <label for="implementer_inventoryInput"><span class="text-danger">*</span> Implementer inventory number:</label>
                     <input id="implementer_inventoryInput" value="{{$device->implementer_inventory ?? ''}}" type="text" name="implementer_inventory" class="form-control" placeholder="implementer_inventory">
                 </div>
             </div>
@@ -71,7 +71,7 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="serial_numberInput">* Serial number:</label>
+                    <label for="serial_numberInput"><span class="text-danger">*</span> Serial number:</label>
                     <input id="serial_numberInput" value="{{$device->serial_number ?? ''}}" type="text" name="serial_number" class="form-control" placeholder="serial_number">
                 </div>
             </div>
@@ -104,7 +104,7 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <p></p>
-                    <label for="status_idInput">Condition:</label>
+                    <label for="status_idInput">Choose the status of the device:</label>
                     <select id="status_idSelect" class="form-select"  name="status_id" aria-label="Default select example">
                         <option value="{{$device->status->id  ?? ''}}">{{$device->status->name  ?? ''}}</option>
                         @foreach($statuses as $key => $status)

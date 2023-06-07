@@ -4,12 +4,19 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Additional parameter name:</strong>
-                {{ $d_parameter->name  ?? ''}}
+                <strong>Device name:</strong>
+                {{ $d_parameter->d_name->name  ?? ''}}
             </div>
         </div>
     </div>
-    <p></p>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Additional parameter name:</strong>
+                {{ $d_parameter->name  ?? ''}} {{ $d_parameter->unit->name  ?? ''}}
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">

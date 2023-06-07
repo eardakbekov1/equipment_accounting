@@ -20,4 +20,9 @@ class D_parameter extends Model
     {
         return $this->hasMany(D_p_value::class);
     }
+
+    public function unit(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Unit::class);
+    }
 }

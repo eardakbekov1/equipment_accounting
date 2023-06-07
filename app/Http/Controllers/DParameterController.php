@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\D_name;
 use App\Models\D_parameter;
 use App\Http\Requests\D_parameterRequest;
+use App\Models\Unit;
 
 class DParameterController extends Controller
 {
@@ -30,9 +32,11 @@ class DParameterController extends Controller
     public function create()
     {
         $d_parameters = D_parameter::all();
+        $d_names = D_name::all();
+        $units = Unit::all();
         $titles = ['Additional parameters', 'additional parameter', 'd_parameters', 'Create'];
 
-        return view('d_parameters.create', compact('d_parameters', 'titles'));
+        return view('d_parameters.create', compact('d_parameters', 'titles', 'd_names', 'units'));
     }
 
     /**

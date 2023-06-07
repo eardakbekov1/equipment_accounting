@@ -5,7 +5,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Device name:</strong>
-                {{ $d_p_value->device->d_name->name }}
+                {{ $d_p_value->device->d_name->name ?? ''}}
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Parameter:</strong>
-                {{ $d_p_value->d_name_d_parameter->d_parameter->name}}
+                {{ $d_p_value->d_parameter->name ?? ''}}
             </div>
         </div>
     </div>
